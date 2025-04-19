@@ -838,7 +838,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 1.86}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -1194,7 +1194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9200892500697753001, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9200892500697753001, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
       propertyPath: punchTimeout
@@ -1572,6 +1572,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3624817642810042285, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3799824527930370766, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
       propertyPath: m_Name
       value: P1
@@ -1632,6 +1636,14 @@ PrefabInstance:
       propertyPath: punchTimeout
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 9200892500697753001, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
+      propertyPath: punchHitboxObject1
+      value: 
+      objectReference: {fileID: 1275041797}
+    - target: {fileID: 9200892500697753001, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
+      propertyPath: punchHitboxObject2
+      value: 
+      objectReference: {fileID: 1440398564}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
