@@ -1,0 +1,29 @@
+using UnityEngine;
+
+[RequireComponent(typeof(CharacterController))]
+public class KnockbackReceiver : MonoBehaviour
+{
+    private CharacterController characterController;
+    private Vector3 knockbackVelocity;
+    private float knockbackTimeRemaining;
+
+    private void Awake()
+    {
+        characterController = GetComponent<CharacterController>();
+    }
+
+    public void ApplyKnockback(Vector3 direction, float force, float duration)
+    {
+        knockbackVelocity = direction * force;
+        knockbackTimeRemaining = duration;
+    }
+
+    private void Update()
+    {
+        if (knockbackTimeRemaining > 0f)
+        {
+            characterController.Move(knockbackVelocity * Time.deltaTime);
+            knockbackTimeRemaining -= Time.deltaTime;
+        }
+    }
+}
