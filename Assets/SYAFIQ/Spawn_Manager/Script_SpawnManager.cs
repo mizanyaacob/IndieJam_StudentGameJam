@@ -1,4 +1,5 @@
 
+
 using System.Collections;
 using UnityEngine;
 
@@ -11,13 +12,19 @@ public class Script_SpawnManager : MonoBehaviour
     [Header("Objects to Spawn (up to 7)")]
     public GameObject[] Objects = new GameObject[7]; // 7 objects to choose from
 
-    public int ObjectCount;
+    [Header("Spawn Position Settings")]
+    public float SpawnZ = 0f;
 
     [Header("Rotation Settings")]
     public bool useRandomRotation = false;
     public Vector3 fixedRotation = Vector3.zero;
 
+    [Header("Spawn Timing")]
+    public float spawnInterval = 1f;
 
+
+
+    public int ObjectCount;
 
     void Start()
     {
@@ -29,9 +36,10 @@ public class Script_SpawnManager : MonoBehaviour
         while (CheckSpawn(ObjectCount))
         {
             yield return StartCoroutine(SpawnObject());
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(spawnInterval);
         }
     }
+
 
     bool CheckSpawn(int count)
     {
@@ -40,12 +48,22 @@ public class Script_SpawnManager : MonoBehaviour
 
     IEnumerator SpawnObject()
     {
-        Vector3 spawnPos = TargetObject.transform.position + new Vector3(
-        Random.Range(-SpawnerSize.x / 2, SpawnerSize.x / 2),
-        Random.Range(-SpawnerSize.y / 2, SpawnerSize.y / 2),
-        0);
+        Vector3 localOffset = new Vector3(
+            Random.Range(-SpawnerSize.x / 2, SpawnerSize.x / 2),
+            0f, // Keep Y fixed for horizontal plane
+            Random.Range(-SpawnerSize.y / 2, SpawnerSize.y / 2)); // Random Z (depth)
 
 
+        float radius = 10f;
+        Vector3 point = Random.insideUnitSphere * radius;
+
+        point.y = 10f;
+
+        // Apply rotation from TargetObject to localOffset
+        Vector3 spawnPos = TargetObject.transform.position + TargetObject.transform.rotation * localOffset;
+
+        // Override Z to fix depth regardless of rotation
+        spawnPos.y = SpawnZ; // Set Y position instead of Z to control height
 
         GameObject selectedObject = Objects[Random.Range(0, Objects.Length)];
 
@@ -55,12 +73,14 @@ public class Script_SpawnManager : MonoBehaviour
                 ? Random.rotation
                 : Quaternion.Euler(fixedRotation);
 
-            Instantiate(selectedObject, spawnPos, rotation);
+            Instantiate(selectedObject, point, rotation);
             ObjectCount -= 1;
         }
 
         yield return null;
     }
+
+
 
     private void OnDrawGizmos()
     {
