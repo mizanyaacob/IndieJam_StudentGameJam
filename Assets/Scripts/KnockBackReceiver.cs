@@ -4,7 +4,7 @@ using UnityEngine;
 public class KnockbackReceiver : MonoBehaviour
 {
     private CharacterController characterController;
-    private Vector3 knockbackVelocity;
+    [SerializeField] private Vector3 knockbackVelocity;
     private float knockbackTimeRemaining;
 
     private void Awake()
@@ -25,5 +25,7 @@ public class KnockbackReceiver : MonoBehaviour
             characterController.Move(knockbackVelocity * Time.deltaTime);
             knockbackTimeRemaining -= Time.deltaTime;
         }
+        else
+            knockbackVelocity = Vector3.zero; // Reset velocity when knockback time is over
     }
 }
