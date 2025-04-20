@@ -14,6 +14,7 @@ public class PlayerCombat : MonoBehaviour
     private PunchHitbox punchHitbox1;
     private PunchHitbox punchHitbox2;
 
+
     private void Awake()
     {
         if (animator == null)
