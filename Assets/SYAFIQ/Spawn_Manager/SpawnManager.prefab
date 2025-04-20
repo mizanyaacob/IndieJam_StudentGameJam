@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6965596327645788041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5412394867928318139}
+  - component: {fileID: 8770813923324099466}
+  m_Layer: 0
+  m_Name: SpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5412394867928318139
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6965596327645788041}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 1.7, y: 0.42, z: -4.2}
+  m_LocalScale: {x: 0.67235, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &8770813923324099466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6965596327645788041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a05af83f93846b9418eaafbff9a78799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnerSize: {x: 40, y: 50, z: 0}
+  GizmosColor: {r: 0.29086065, g: 0, b: 1, a: 1}
+  TargetObject: {fileID: 6965596327645788041}
+  Objects:
+  - {fileID: 3856348729272303512, guid: c8a59bd59ac50364c929ad6d6cbd160f, type: 3}
+  - {fileID: 5612836806706662257, guid: e4f94e185ac746b49982940a3f556a74, type: 3}
+  - {fileID: 3781773369341555699, guid: 21b5e89c5821d414693c696141a41237, type: 3}
+  - {fileID: 8963068338644834894, guid: d7bb6dc4665a6c84dbc93232353c7a37, type: 3}
+  - {fileID: 5106384326545774158, guid: 08cae740b11cd7d48b64f1f39bc43bec, type: 3}
+  - {fileID: 7412466159343946131, guid: d8d68710f6d51d5478e53e6d8c80c7e1, type: 3}
+  - {fileID: 8492641953187394078, guid: 535b41c116e404e44a4ec0506c97b28e, type: 3}
+  ObjectCount: 20
+  useRandomRotation: 0
+  fixedRotation: {x: 90, y: 0, z: 0}
