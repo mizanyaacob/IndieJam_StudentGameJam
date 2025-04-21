@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3721916510781738749}
   - component: {fileID: -6879687144065473356}
   - component: {fileID: 2791479945410965789}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Kuih (6)
-  m_TagString: Kuih
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

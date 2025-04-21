@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3156984058045578484}
   - component: {fileID: 4647199583143879736}
   - component: {fileID: -3978889882449021325}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Almond London
-  m_TagString: Kuih
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

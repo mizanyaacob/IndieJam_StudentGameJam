@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 5167087896251294401}
   - component: {fileID: 6224431360683296340}
   - component: {fileID: -6554432838301438670}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Croissant
-  m_TagString: Kuih
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

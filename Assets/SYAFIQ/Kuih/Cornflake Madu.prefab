@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 7422657143093109402}
   - component: {fileID: 6946616971715244649}
   - component: {fileID: 4311868453135880415}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cornflake Madu
-  m_TagString: Kuih
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

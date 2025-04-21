@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 6624132474698504155}
   - component: {fileID: 8302278274179954110}
   - component: {fileID: -8106239965875687135}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ketupat
-  m_TagString: Kuih
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

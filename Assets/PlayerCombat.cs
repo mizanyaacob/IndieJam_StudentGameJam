@@ -31,6 +31,8 @@ public class PlayerCombat : MonoBehaviour
     private PlayerInput playerInput;
     private CharacterController characterController;
 
+    private PlayerFoodConsumer playerFoodConsumer;
+
     private void Awake()
     {
         if (animator == null)
@@ -40,13 +42,15 @@ public class PlayerCombat : MonoBehaviour
         leftFistHitbox = leftFistHitboxObject.GetComponent<PunchHitbox>();
         playerInput = GetComponent<PlayerInput>();
         characterController = GetComponent<CharacterController>();
+
+        playerFoodConsumer = GetComponent<PlayerFoodConsumer>();
     }
 
     public void OnAttack()
     {
         lastPunchTime = Time.time;
 
-        if (!isPunching)
+        if (!isPunching && !playerFoodConsumer.IsConsuming())
         {
             isPunching = true;
             animator.SetBool("isPunching", true);
