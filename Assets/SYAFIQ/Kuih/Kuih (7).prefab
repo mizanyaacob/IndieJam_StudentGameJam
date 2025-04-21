@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 1269501428425586629}
   - component: {fileID: 498312985420676708}
   - component: {fileID: 7898192855431906612}
-  m_Layer: 0
+  - component: {fileID: -6589858130448407619}
+  m_Layer: 6
   m_Name: Kuih (7)
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +96,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8492641953187394078}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 94619d9724a98064cbe0a044651c1efc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -136,3 +137,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-6589858130448407619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8492641953187394078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 464f762484a029648872f960d302b43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kuihName: Kuih 7
+  scoreValue: 1
+  consumeTime: 1

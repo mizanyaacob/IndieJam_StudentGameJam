@@ -101,15 +101,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.5092885
-        functionName: StartPunch2
+      - time: 0.44424784
+        functionName: StartLeftPunch
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.889725
-        functionName: EndPunch2
+        functionName: EndLeftPunch
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

@@ -112,6 +112,12 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
+        public bool IsKnockback = false;
+
+        private PlayerFoodConsumer playerFoodConsumer;
+
+        private KnockbackReceiver _knockbackReceiver;
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -154,6 +160,8 @@ namespace StarterAssets
             _fallTimeoutDelta = FallTimeout;
 
             playerSpinner = GetComponentInParent<PlayerSpinner>();
+            playerFoodConsumer = GetComponent<PlayerFoodConsumer>();
+            _knockbackReceiver = GetComponent<KnockbackReceiver>();
         }
 
         private void Update()
@@ -217,8 +225,13 @@ namespace StarterAssets
 
         private void Move()
         {
-            // set target speed based on move speed, sprint speed and if sprint is pressed
-            float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+            // Check if the player is consuming food
+            bool isConsuming = playerFoodConsumer != null && playerFoodConsumer.IsConsuming();
+            // Add dizzy check
+            bool isDizzy = _knockbackReceiver != null && _knockbackReceiver.IsDizzy();
+
+            // Modify target speed calculation
+            float targetSpeed = (isConsuming || isDizzy) ? 0f : (_input.sprint ? SprintSpeed : MoveSpeed);
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -232,21 +245,24 @@ namespace StarterAssets
             float speedOffset = 0.1f;
             float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
-            // accelerate or decelerate to target speed
-            if (currentHorizontalSpeed < targetSpeed - speedOffset ||
-                currentHorizontalSpeed > targetSpeed + speedOffset)
+            if (!IsKnockback)
             {
-                // creates curved result rather than a linear one giving a more organic speed change
-                // note T in Lerp is clamped, so we don't need to clamp our speed
-                _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
-                    Time.deltaTime * SpeedChangeRate);
+                // accelerate or decelerate to target speed
+                if (currentHorizontalSpeed < targetSpeed - speedOffset ||
+                    currentHorizontalSpeed > targetSpeed + speedOffset)
+                {
+                    // creates curved result rather than a linear one giving a more organic speed change
+                    // note T in Lerp is clamped, so we don't need to clamp our speed
+                    _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
+                        Time.deltaTime * SpeedChangeRate);
 
-                // round speed to 3 decimal places
-                _speed = Mathf.Round(_speed * 1000f) / 1000f;
-            }
-            else
-            {
-                _speed = targetSpeed;
+                    // round speed to 3 decimal places
+                    _speed = Mathf.Round(_speed * 1000f) / 1000f;
+                }
+                else
+                {
+                    _speed = targetSpeed;
+                }
             }
 
             _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
@@ -255,12 +271,12 @@ namespace StarterAssets
             // normalise input direction
             Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
-            // Determine if spinning is happening
+            // Determine if spinning or consuming
             bool shouldRotateWithMovement = (_input.move != Vector2.zero);
             bool isSpinning = (playerSpinner != null && playerSpinner.IsSpinning);
 
-            // If player is spinning, don't rotate with movement
-            if (playerSpinner != null && playerSpinner.IsSpinning)
+            // Prevent rotation if spinning or consuming
+            if (isSpinning || isConsuming || isDizzy)
             {
                 shouldRotateWithMovement = false;
             }
@@ -311,6 +327,9 @@ namespace StarterAssets
 
         private void JumpAndGravity()
         {
+            bool isConsuming = playerFoodConsumer != null && playerFoodConsumer.IsConsuming();
+            // Add dizzy check
+            bool isDizzy = _knockbackReceiver != null && _knockbackReceiver.IsDizzy();
             if (Grounded)
             {
                 // reset the fall timeout timer
@@ -330,7 +349,7 @@ namespace StarterAssets
                 }
 
                 // Jump
-                if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+                if (_input.jump && _jumpTimeoutDelta <= 0.0f && !isConsuming  && !isDizzy)
                 {
                     // the square root of H * -2 * G = how much velocity needed to reach desired height
                     _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
