@@ -186,7 +186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8770813923324099466, guid: 48f60b4bdb4ee7841b43aa68ee32f182, type: 3}
       propertyPath: ObjectCount
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8770813923324099466, guid: 48f60b4bdb4ee7841b43aa68ee32f182, type: 3}
       propertyPath: SpawnerSize.x
@@ -198,7 +198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8770813923324099466, guid: 48f60b4bdb4ee7841b43aa68ee32f182, type: 3}
       propertyPath: spawnInterval
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8770813923324099466, guid: 48f60b4bdb4ee7841b43aa68ee32f182, type: 3}
       propertyPath: fixedRotation.x
@@ -1490,7 +1490,8 @@ PrefabInstance:
       propertyPath: rightFistHitboxObject
       value: 
       objectReference: {fileID: 1440398564}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2915031959748156890, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

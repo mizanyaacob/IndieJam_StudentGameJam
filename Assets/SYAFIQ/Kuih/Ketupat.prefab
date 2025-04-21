@@ -151,4 +151,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kuihName: Ketupat
   scoreValue: 1
-  consumeTime: 1
+  consumeTime: 7
