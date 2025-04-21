@@ -6,38 +6,36 @@ public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private float punchTimeout = 1f;
-    [SerializeField] private GameObject punchHitboxObject1; // Right fist
-    [SerializeField] private GameObject punchHitboxObject2; // Left fist
+
+    [Header("Punch Hitboxes")]
+    [SerializeField] private GameObject rightFistHitboxObject; // Right fist
+    [SerializeField] private GameObject leftFistHitboxObject;  // Left fist
 
     private float lastPunchTime;
     private bool isPunching;
-    private PunchHitbox punchHitbox1;
-    private PunchHitbox punchHitbox2;
+    private PunchHitbox rightFistHitbox;
+    private PunchHitbox leftFistHitbox;
     private PlayerInput playerInput;
-
 
     private void Awake()
     {
         if (animator == null)
             animator = GetComponent<Animator>();
 
-        punchHitbox1 = punchHitboxObject1.GetComponent<PunchHitbox>();
-        punchHitbox2 = punchHitboxObject2.GetComponent<PunchHitbox>();
+        rightFistHitbox = rightFistHitboxObject.GetComponent<PunchHitbox>();
+        leftFistHitbox = leftFistHitboxObject.GetComponent<PunchHitbox>();
         playerInput = GetComponent<PlayerInput>();
     }
 
     // Called by the Input System
-    public void OnAttack(InputAction.CallbackContext context)
+    public void OnAttack()
     {
-        if (context.performed)
-        {
-            lastPunchTime = Time.time;
+        lastPunchTime = Time.time;
 
-            if (!isPunching)
-            {
-                isPunching = true;
-                animator.SetBool("isPunching", true);
-            }
+        if (!isPunching)
+        {
+            isPunching = true;
+            animator.SetBool("isPunching", true);
         }
     }
 
@@ -51,8 +49,8 @@ public class PlayerCombat : MonoBehaviour
     }
 
     // Animation Events
-    public void StartPunch1() => punchHitbox1?.StartPunch();
-    public void EndPunch1() => punchHitbox1?.EndPunch();
-    public void StartPunch2() => punchHitbox2?.StartPunch();
-    public void EndPunch2() => punchHitbox2?.EndPunch();
+    public void StartRightPunch() => rightFistHitbox?.StartPunch();
+    public void EndRightPunch() => rightFistHitbox?.EndPunch();
+    public void StartLeftPunch() => leftFistHitbox?.StartPunch();
+    public void EndLeftPunch() => leftFistHitbox?.EndPunch();
 }

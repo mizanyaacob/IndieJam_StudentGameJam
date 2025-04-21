@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &376516077 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5156083503611997348, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
+  m_PrefabInstance: {fileID: 2076789512}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &466822446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218,7 +223,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackForce: 5
-  knockbackDuration: 0.2
+  knockbackDuration: 0.5
+  useUpwardKnockback: 1
+  upwardForce: 1
 --- !u!65 &496958225
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -238,7 +245,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &903304868
 GameObject:
@@ -366,6 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836df0137a22efe46a340cc34793641d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackVelocity: {x: 0, y: 0, z: 0}
 --- !u!1001 &963823533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -459,6 +467,9 @@ MonoBehaviour:
   - Object: {fileID: 8338988566230355768}
     Weight: 1
     Radius: 0.5
+  - Object: {fileID: 376516077}
+    Weight: 1
+    Radius: 0.5
   m_LegacyTargets: []
 --- !u!4 &1178751835
 Transform:
@@ -469,7 +480,7 @@ Transform:
   m_GameObject: {fileID: 1178751833}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.375, z: 0}
+  m_LocalPosition: {x: 0, y: 1.375, z: 4.263158}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -562,7 +573,7 @@ Transform:
   m_GameObject: {fileID: 1191231909}
   serializedVersion: 2
   m_LocalRotation: {x: 0.29022643, y: 0.00000003021398, z: -0.000000009163302, w: 0.956958}
-  m_LocalPosition: {x: 0, y: 11.375, z: -14.97}
+  m_LocalPosition: {x: 0, y: 11.375, z: -10.706842}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -618,7 +629,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackForce: 5
-  knockbackDuration: 0.2
+  knockbackDuration: 0.5
+  useUpwardKnockback: 1
+  upwardForce: 1
 --- !u!65 &1275041800
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -715,7 +728,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackForce: 5
-  knockbackDuration: 0.2
+  knockbackDuration: 0.5
+  useUpwardKnockback: 1
+  upwardForce: 1
 --- !u!65 &1440398567
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -755,7 +770,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackForce: 5
-  knockbackDuration: 0.2
+  knockbackDuration: 0.5
+  useUpwardKnockback: 1
+  upwardForce: 1
 --- !u!65 &1744613422
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -775,7 +792,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1943156879
 GameObject:
@@ -797,7 +814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1943156880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,6 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 836df0137a22efe46a340cc34793641d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackVelocity: {x: 0, y: 0, z: 0}
 --- !u!143 &1943156881
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1221,6 +1239,10 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1582680784188706327, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
+      propertyPath: playerIndex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3799824527930370766, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
       propertyPath: m_Name
       value: P1 (1)
@@ -1275,12 +1297,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9200892500697753001, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9200892500697753001, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
       propertyPath: punchTimeout
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 9200892500697753001, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
+      propertyPath: punchHitboxObject1
+      value: 
+      objectReference: {fileID: 496958222}
+    - target: {fileID: 9200892500697753001, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
+      propertyPath: punchHitboxObject2
+      value: 
+      objectReference: {fileID: 1744613419}
+    - target: {fileID: 9200892500697753001, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
+      propertyPath: leftFistHitboxObject
+      value: 
+      objectReference: {fileID: 1744613419}
+    - target: {fileID: 9200892500697753001, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
+      propertyPath: rightFistHitboxObject
+      value: 
+      objectReference: {fileID: 496958222}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1442,7 +1480,7 @@ Transform:
   m_GameObject: {fileID: 2133154598}
   serializedVersion: 2
   m_LocalRotation: {x: 0.29022643, y: 0.00000003021398, z: -0.000000009163302, w: 0.95695806}
-  m_LocalPosition: {x: 0, y: 11.375, z: -14.97}
+  m_LocalPosition: {x: 0, y: 11.375, z: -10.706842}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1453,6 +1491,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3799824527930370766, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
   m_PrefabInstance: {fileID: 4741473030040339207}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4416926081903343214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926081903343204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836df0137a22efe46a340cc34793641d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackVelocity: {x: 0, y: 0, z: 0}
 --- !u!1001 &4741473030040339207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1464,10 +1515,10 @@ PrefabInstance:
     - target: {fileID: 1135486114223518116, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
       propertyPath: m_Actions
       value: 
-      objectReference: {fileID: -944628639613478452, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
+      objectReference: {fileID: -944628639613478452, guid: 5a6bd73a58dcb934ca8025781ca5b171, type: 3}
     - target: {fileID: 1135486114223518116, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
       propertyPath: m_NotificationBehavior
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1135486114223518116, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
       propertyPath: m_ActionEvents.Array.size
@@ -1725,10 +1776,21 @@ PrefabInstance:
       propertyPath: punchHitboxObject2
       value: 
       objectReference: {fileID: 1440398564}
+    - target: {fileID: 9200892500697753001, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
+      propertyPath: leftFistHitboxObject
+      value: 
+      objectReference: {fileID: 1275041797}
+    - target: {fileID: 9200892500697753001, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
+      propertyPath: rightFistHitboxObject
+      value: 
+      objectReference: {fileID: 1440398564}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3799824527930370766, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4416926081903343214}
     - targetCorrespondingSourceObject: {fileID: 6257723234680120679, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1275041800}

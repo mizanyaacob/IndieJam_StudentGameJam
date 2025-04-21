@@ -1,4 +1,5 @@
 // PunchHitbox.cs
+using StarterAssets;
 using UnityEngine;
 public class PunchHitbox : MonoBehaviour
 {
@@ -9,10 +10,12 @@ public class PunchHitbox : MonoBehaviour
 
     private bool isHitboxActive = false;
 
+    private ThirdPersonController playerController;
+
     private void OnTriggerEnter(Collider other)
     {
         // Uncommented the check to make sure we only apply knockback when the hitbox is active
-        //if (!isHitboxActive) return;
+        if (!isHitboxActive) return;
 
         // Make sure we're hitting another player, not ourselves
         if (other.CompareTag("Player") && other.gameObject != transform.root.gameObject)
@@ -32,6 +35,8 @@ public class PunchHitbox : MonoBehaviour
                     direction.y = upwardForce;
                 }
 
+                playerController = other.GetComponent<ThirdPersonController>();
+                playerController.IsKnockback = true;
                 // Apply knockback
                 receiver.ApplyKnockback(direction, knockbackForce, knockbackDuration);
             }

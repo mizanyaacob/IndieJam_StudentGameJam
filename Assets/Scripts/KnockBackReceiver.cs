@@ -1,3 +1,4 @@
+using StarterAssets;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -7,9 +8,12 @@ public class KnockbackReceiver : MonoBehaviour
     [SerializeField] private Vector3 knockbackVelocity;
     private float knockbackTimeRemaining;
 
+    private ThirdPersonController playerController;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        playerController = GetComponent<ThirdPersonController>();
     }
 
     public void ApplyKnockback(Vector3 direction, float force, float duration)
@@ -26,6 +30,9 @@ public class KnockbackReceiver : MonoBehaviour
             knockbackTimeRemaining -= Time.deltaTime;
         }
         else
+        {
             knockbackVelocity = Vector3.zero; // Reset velocity when knockback time is over
+            playerController.IsKnockback = false; // Reset knockback state
+        }
     }
 }
