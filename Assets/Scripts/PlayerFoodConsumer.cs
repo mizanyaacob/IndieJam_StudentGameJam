@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,6 +26,11 @@ public class PlayerFoodConsumer : MonoBehaviour
     [SerializeField] private string normalActionMap = "Player";
     [SerializeField] private string invertedActionMap = "Inverted";
 
+    [Header("PLayer Score")]
+    [SerializeField] private int playerIndex = 0; // Assuming player index is set somewhere else
+
+    private ScoringManager scoringManager;
+
     private List<GameObject> foodItemsInRange = new List<GameObject>();
     private PlayerInput playerInput;
     private Coroutine invertCoroutine;
@@ -41,6 +46,7 @@ public class PlayerFoodConsumer : MonoBehaviour
             consumingTimerUI.SetActive(false);
 
         playerInput = GetComponent<PlayerInput>();
+        scoringManager = FindObjectOfType<ScoringManager>();
     }
 
     private void Update()
@@ -55,6 +61,41 @@ public class PlayerFoodConsumer : MonoBehaviour
             {
                 currentEatingTime = 0;
                 isConsuming = false;
+
+                // ✅ Score gets added after eating completes
+                if (foodInRange != null)
+                {
+                    KuihProperties kuihProps = foodInRange.GetComponent<KuihProperties>();
+                    if (kuihProps != null)
+                    {
+                        if (kuihProps.CurrentState == KuihProperties.KuihState.Bad)
+                        {
+                            Debug.Log($"{gameObject.name} finished consuming a BAD kuih! Switching to Inverted controls.");
+
+                            if (playerInput != null && playerInput.currentActionMap.name != invertedActionMap)
+                            {
+                                if (invertCoroutine != null)
+                                    StopCoroutine(invertCoroutine);
+
+                                invertCoroutine = StartCoroutine(TemporarilyInvertControls());
+                            }
+                        }
+
+                        scoringManager.AddScore(playerIndex, kuihProps.scoreValue);
+                    }
+
+                    foodItemsInRange.Remove(foodInRange);
+                    Destroy(foodInRange);
+                    foodConsumed++;
+
+                    Debug.Log($"{gameObject.name} finished consuming food! Total consumed: {foodConsumed}");
+
+                    foodInRange = null;
+                    isNearFood = false;
+
+                    SelectClosestFood();
+                }
+
                 if (consumingTimerUI != null)
                     consumingTimerUI.SetActive(false);
             }
@@ -65,6 +106,7 @@ public class PlayerFoodConsumer : MonoBehaviour
             SelectClosestFood();
         }
     }
+
 
     public void OnConsume()
     {
@@ -86,31 +128,16 @@ public class PlayerFoodConsumer : MonoBehaviour
     {
         if (foodInRange == null) return;
 
-        KuihProperties kuihProps = foodInRange.GetComponent<KuihProperties>();
-        if (kuihProps != null && kuihProps.CurrentState == KuihProperties.KuihState.Bad)
-        {
-            Debug.Log($"{gameObject.name} consumed a BAD kuih! Switching to Inverted controls.");
+        isConsuming = true;
+        currentEatingTime = eatingTime;
 
-            if (playerInput != null && playerInput.currentActionMap.name != invertedActionMap)
-            {
-                if (invertCoroutine != null)
-                    StopCoroutine(invertCoroutine);
+        if (consumingTimerUI != null)
+            consumingTimerUI.SetActive(true);
 
-                invertCoroutine = StartCoroutine(TemporarilyInvertControls());
-            }
-        }
-
-        foodItemsInRange.Remove(foodInRange);
-        Destroy(foodInRange);
-        foodConsumed++;
-
-        Debug.Log($"{gameObject.name} consumed food! Total consumed: {foodConsumed}");
-
-        foodInRange = null;
-        isNearFood = false;
-
-        SelectClosestFood();
+        Debug.Log($"{gameObject.name} started consuming {foodInRange.name}");
     }
+
+
 
     private IEnumerator TemporarilyInvertControls()
     {

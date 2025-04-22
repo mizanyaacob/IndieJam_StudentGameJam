@@ -18,6 +18,10 @@ public class MovingAnnouncementUI : MonoBehaviour
     private Vector2 midPos;
     private Vector2 endPos;
 
+
+    private void Start()
+    {
+    }
     public void StartAnnouncement(string message, Color textColor)
     {
         gameObject.SetActive(true);

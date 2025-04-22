@@ -151,4 +151,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kuihName: Ketupat
   scoreValue: 1
-  consumeTime: 7
+  consumeTime: 3
+  goodDuration: 5
+  badDuration: 5
+  explosionRadius: 3
+  explosionForce: 5
+  knockbackDuration: 0.5
+  explosionEffect: {fileID: 1247311384876784, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}

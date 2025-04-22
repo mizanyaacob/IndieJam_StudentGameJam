@@ -18,12 +18,19 @@ public class KuihProperties : MonoBehaviour
     public float explosionRadius = 3f;
     public float explosionForce = 5f;
     public float knockbackDuration = 0.5f;
+    public GameObject explosionEffect;
 
     private KuihState currentState = KuihState.Good;
     private float stateTimer;
 
+    private ImpulseTrigger impulseTrigger;
+
     public KuihState CurrentState => currentState;
 
+    private void Awake()
+    {
+        impulseTrigger = FindAnyObjectByType<ImpulseTrigger>();
+    }
     void Start()
     {
         currentState = KuihState.Good;
@@ -78,13 +85,14 @@ public class KuihProperties : MonoBehaviour
             {
                 Vector3 direction = (hit.transform.position - transform.position).normalized;
                 direction.y = 1.5f; // Keep Y direction zero for horizontal knockback
-                receiver.ApplyKnockback(direction, explosionForce, knockbackDuration);
+                receiver.ApplyKnockback(direction, explosionForce, knockbackDuration, false);
             }
         }
 
         // Optional: add explosion effect
         // Instantiate(explosionEffect, transform.position, Quaternion.identity);
-
+        impulseTrigger.TriggerImpulse();
+        Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

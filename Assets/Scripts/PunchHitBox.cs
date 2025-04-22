@@ -8,6 +8,8 @@ public class PunchHitbox : MonoBehaviour
     [SerializeField] private bool useUpwardKnockback = true;
     [SerializeField] private float upwardForce = 1f;
 
+    public GameObject hitPrefabs;
+
     private bool isHitboxActive = false;
 
     private ThirdPersonController playerController;
@@ -35,10 +37,19 @@ public class PunchHitbox : MonoBehaviour
                     direction.y = upwardForce;
                 }
 
+                if(hitPrefabs != null)
+                {
+
+                    Instantiate(
+                        hitPrefabs,
+                        transform.position,
+                        Quaternion.identity
+                    );
+                }
                 playerController = other.GetComponent<ThirdPersonController>();
                 playerController.IsKnockback = true;
                 // Apply knockback
-                receiver.ApplyKnockback(direction, knockbackForce, knockbackDuration);
+                receiver.ApplyKnockback(direction, knockbackForce, knockbackDuration, true);
             }
         }
     }

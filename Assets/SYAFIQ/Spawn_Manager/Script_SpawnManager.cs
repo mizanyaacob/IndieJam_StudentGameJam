@@ -1,4 +1,4 @@
-
+﻿
 
 using System.Collections;
 using UnityEngine;
@@ -35,6 +35,7 @@ public class Script_SpawnManager : MonoBehaviour
         StartCoroutine(SpawnLoop());
 
         movingAnnouncementUI = FindObjectOfType<MovingAnnouncementUI>();
+
     }
 
     IEnumerator SpawnLoop()
