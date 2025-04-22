@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 06dd7d0f284021b48abc7630253a6ab4
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249458
+  packageName: UI 23 - Comic Menu
+  packageVersion: 1.0
+  assetPath: Assets/ComicArtUI/Prefab/Game Manger (Canvas).prefab
+  uploadId: 570138

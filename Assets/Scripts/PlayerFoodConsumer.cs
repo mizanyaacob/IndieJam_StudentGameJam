@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,8 +21,14 @@ public class PlayerFoodConsumer : MonoBehaviour
     [SerializeField] private Image timerSlider;
     private float currentEatingTime;
 
-    // List to keep track of all food items in range
+    [Header("Inverted Control Settings")]
+    [SerializeField] private float invertedDuration = 5f;
+    [SerializeField] private string normalActionMap = "Player";
+    [SerializeField] private string invertedActionMap = "Inverted";
+
     private List<GameObject> foodItemsInRange = new List<GameObject>();
+    private PlayerInput playerInput;
+    private Coroutine invertCoroutine;
 
     private void Start()
     {
@@ -30,18 +37,17 @@ public class PlayerFoodConsumer : MonoBehaviour
 
         currentEatingTime = eatingTime;
 
-        // Hide the UI at start
         if (consumingTimerUI != null)
             consumingTimerUI.SetActive(false);
+
+        playerInput = GetComponent<PlayerInput>();
     }
 
     private void Update()
     {
-        // Handle the eating timer
         if (isConsuming)
         {
             currentEatingTime -= Time.deltaTime;
-
             if (timerSlider != null)
                 timerSlider.fillAmount = currentEatingTime / eatingTime;
 
@@ -49,21 +55,17 @@ public class PlayerFoodConsumer : MonoBehaviour
             {
                 currentEatingTime = 0;
                 isConsuming = false;
-
                 if (consumingTimerUI != null)
                     consumingTimerUI.SetActive(false);
             }
         }
 
-        // If we don't have a current food item, but there are food items in range,
-        // select the closest one
         if (!isNearFood && foodItemsInRange.Count > 0)
         {
             SelectClosestFood();
         }
     }
 
-    // Input Method for Send Message Input System
     public void OnConsume()
     {
         if (Time.time - lastConsumeTime < consumeCooldown) return;
@@ -82,27 +84,45 @@ public class PlayerFoodConsumer : MonoBehaviour
 
     private void ConsumeFood()
     {
-        // Remove from our tracking list before destroying
-        foodItemsInRange.Remove(foodInRange);
+        if (foodInRange == null) return;
 
-        // Destroy or disable the food object
+        KuihProperties kuihProps = foodInRange.GetComponent<KuihProperties>();
+        if (kuihProps != null && kuihProps.CurrentState == KuihProperties.KuihState.Bad)
+        {
+            Debug.Log($"{gameObject.name} consumed a BAD kuih! Switching to Inverted controls.");
+
+            if (playerInput != null && playerInput.currentActionMap.name != invertedActionMap)
+            {
+                if (invertCoroutine != null)
+                    StopCoroutine(invertCoroutine);
+
+                invertCoroutine = StartCoroutine(TemporarilyInvertControls());
+            }
+        }
+
+        foodItemsInRange.Remove(foodInRange);
         Destroy(foodInRange);
         foodConsumed++;
+
         Debug.Log($"{gameObject.name} consumed food! Total consumed: {foodConsumed}");
 
-        // Reset current food reference
         foodInRange = null;
         isNearFood = false;
 
-        // After consuming, check if there's another food in range to focus on
         SelectClosestFood();
+    }
+
+    private IEnumerator TemporarilyInvertControls()
+    {
+        playerInput.SwitchCurrentActionMap(invertedActionMap);
+        yield return new WaitForSeconds(invertedDuration);
+        playerInput.SwitchCurrentActionMap(normalActionMap);
+        Debug.Log($"{gameObject.name} controls reverted to normal.");
     }
 
     private void SelectClosestFood()
     {
-        // Clean up any null references that might exist in our list
         foodItemsInRange.RemoveAll(item => item == null);
-
         if (foodItemsInRange.Count == 0)
         {
             foodInRange = null;
@@ -110,7 +130,6 @@ public class PlayerFoodConsumer : MonoBehaviour
             return;
         }
 
-        // Find the closest food item
         GameObject closest = null;
         float closestDistance = float.MaxValue;
 
@@ -127,18 +146,14 @@ public class PlayerFoodConsumer : MonoBehaviour
             }
         }
 
-        // Set the closest as our current target
         if (closest != null)
         {
             foodInRange = closest;
             isNearFood = true;
 
-            // Update eating time based on the food's properties
             KuihProperties kuihProps = closest.GetComponent<KuihProperties>();
             if (kuihProps != null)
-            {
                 eatingTime = kuihProps.consumeTime;
-            }
 
             Debug.Log($"Selected {foodInRange.name} as the current food to consume");
         }
@@ -148,14 +163,12 @@ public class PlayerFoodConsumer : MonoBehaviour
     {
         if (other.CompareTag("Food") && other.GetComponent<KuihProperties>())
         {
-            // Add this food to our tracking list
             if (!foodItemsInRange.Contains(other.gameObject))
             {
                 foodItemsInRange.Add(other.gameObject);
                 Debug.Log($"Added {other.gameObject.name} to food items in range. Total: {foodItemsInRange.Count}");
             }
 
-            // If we don't currently have a food in focus, select this one
             if (!isNearFood || foodInRange == null)
             {
                 foodInRange = other.gameObject;
@@ -170,14 +183,12 @@ public class PlayerFoodConsumer : MonoBehaviour
     {
         if (other.CompareTag("Food"))
         {
-            // Remove from our tracking list
             if (foodItemsInRange.Contains(other.gameObject))
             {
                 foodItemsInRange.Remove(other.gameObject);
                 Debug.Log($"Removed {other.gameObject.name} from food items in range. Total: {foodItemsInRange.Count}");
             }
 
-            // If this was our current focus, find a new one
             if (other.gameObject == foodInRange)
             {
                 foodInRange = null;
@@ -187,10 +198,7 @@ public class PlayerFoodConsumer : MonoBehaviour
         }
     }
 
-    public bool IsConsuming()
-    {
-        return isConsuming;
-    }
+    public bool IsConsuming() => isConsuming;
 
     public void SetIsConsuming(bool value)
     {
@@ -199,7 +207,6 @@ public class PlayerFoodConsumer : MonoBehaviour
             consumingTimerUI.SetActive(false);
     }
 
-    // Debug method to show which food item is currently focused
     public string GetCurrentFoodName()
     {
         return foodInRange != null ? foodInRange.name : "None";

@@ -24,6 +24,8 @@ public class Script_SpawnManager : MonoBehaviour
 
     [SerializeField] private float spawnRadius = 10f;
 
+    [SerializeField] private MovingAnnouncementUI movingAnnouncementUI; // Reference to the UI script
+
 
 
     public int ObjectCount;
@@ -31,6 +33,8 @@ public class Script_SpawnManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnLoop());
+
+        movingAnnouncementUI = FindObjectOfType<MovingAnnouncementUI>();
     }
 
     IEnumerator SpawnLoop()
