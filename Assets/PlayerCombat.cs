@@ -16,6 +16,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float dashDistance = 5f;
     [SerializeField] private float dashCooldown = 2f;
     [SerializeField] private float dashDuration = 0.2f; // Total time to dash
+    [SerializeField] private GameObject dashEffect; // Optional dash effect prefab
 
     private float lastDashTime;
     private bool isDashing;
@@ -65,8 +66,10 @@ public class PlayerCombat : MonoBehaviour
         dashStartTime = Time.time;
 
         dashStartPosition = transform.position;
-        dashEndPosition = transform.position + transform.forward * dashDistance;
+        dashEndPosition = transform.position + transform.forward * dashDistance + Vector3.up * 1f; // You can adjust the 1f to control height
 
+
+        Instantiate(dashEffect, transform.position, Quaternion.identity); // Optional dash effect
         isDashing = true;
 
         // animator.SetTrigger("Dash"); // optional animation

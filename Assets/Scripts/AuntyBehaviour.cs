@@ -12,7 +12,7 @@ public class AuntyBehavior : MonoBehaviour
     [SerializeField] private float slapRange = 1.5f;
     [SerializeField] private float slapCooldown = 2f;
 
-    private GameObject targetPlayer;
+    [SerializeField] private GameObject targetPlayer;
     private NavMeshAgent agent;
     private float lastSlapTime;
 
@@ -60,14 +60,30 @@ public class AuntyBehavior : MonoBehaviour
     private void SlapPlayer()
     {
         Debug.Log($"{gameObject.name} slapped {targetPlayer.name}!");
-        // Example punishment:
+
+        // Stop food consumption
         PlayerFoodConsumer consumer = targetPlayer.GetComponent<PlayerFoodConsumer>();
         if (consumer != null)
         {
             consumer.SetIsConsuming(false);
-            // Add stun or speed penalty here
         }
+
+        KnockbackReceiver knockback = targetPlayer.GetComponent<KnockbackReceiver>();
+        knockback.ApplyKnockback(
+            (targetPlayer.transform.position - transform.position).normalized, // direction away from Aunty
+            15f, // force
+            0.5f, // duration
+            false // don't count this hit toward dizzy
+        );
+        // Force dizzy state
+        if (knockback != null)
+        {
+            knockback.ForceDizzy(10f);
+        }
+
+
     }
+
 
     private IEnumerator DespawnAfterTime()
     {

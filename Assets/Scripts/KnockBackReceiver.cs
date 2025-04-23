@@ -53,25 +53,21 @@ public class KnockbackReceiver : MonoBehaviour
         }
     }
 
-    private void TriggerDizzyState()
+    private void TriggerDizzyState(bool resetDuration = true)
     {
         isDizzy = true;
-        dizzyTimeRemaining = dizzyDuration;
 
-        // Set dizzy animation bool to true
+        if (resetDuration)
+            dizzyTimeRemaining = dizzyDuration;
+
         if (animator != null)
         {
             animator.SetBool(dizzyAnimationBool, true);
         }
 
-        //// Optional: Disable player controls while dizzy
-        //if (playerController != null)
-        //{
-        //    playerController.enabled = false;
-        //}
-
         Debug.Log($"Player is dizzy! Hit count: {hitCount}");
     }
+
 
     private void Update()
     {
@@ -131,4 +127,21 @@ public class KnockbackReceiver : MonoBehaviour
     {
         return isDizzy;
     }
+
+    public void ForceDizzy(float customDuration = -1f)
+    {
+        if (!isDizzy)
+        {
+            hitCount = hitsUntilDizzy;
+
+            // If custom duration is provided, override the default
+            if (customDuration > 0f)
+            {
+                dizzyDuration = customDuration;
+            }
+
+            TriggerDizzyState();
+        }
+    }
+
 }

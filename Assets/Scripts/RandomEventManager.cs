@@ -16,15 +16,18 @@ public class RandomEventManager : MonoBehaviour
     private delegate void GameEvent();
     private List<GameEvent> eventList = new List<GameEvent>();
 
+    public GameObject lighting;
+
     void Start()
     {
         // Register available events
         eventList.Add(AngryAuntyEvent);
         eventList.Add(KuihRainEvent);
         eventList.Add(SlipperyGroundEvent);
-
+        eventList.Add(BlackoutEvent); // 🆕 Blackout
         ScheduleNextEvent();
     }
+
 
     void Update()
     {
@@ -93,4 +96,26 @@ public class RandomEventManager : MonoBehaviour
 
         // TODO: change player movement physics temporarily
     }
+
+    private void BlackoutEvent()
+    {
+        Debug.Log("Event: Blackout");
+
+        if (announcementUI != null)
+        {
+            announcementUI.StartAnnouncement(
+                "🌑 BLACKOUT! EVERYTHING IS DARK...",
+                Color.black,
+                () =>
+                {
+                    if (lighting != null)
+                    {
+                        lighting.SetActive(false);
+                    }
+                }
+            );
+        }
+    }
+
+
 }

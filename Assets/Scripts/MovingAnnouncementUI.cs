@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -21,14 +21,18 @@ public class MovingAnnouncementUI : MonoBehaviour
 
     private void Start()
     {
+        backgroundImage.gameObject.SetActive(false); // Hide background image by default
+        gameObject.SetActive(false); // Hide the announcement UI at start
+        announcementText.gameObject.SetActive(false); // Ensure text is active
     }
-    public void StartAnnouncement(string message, Color textColor)
+    public void StartAnnouncement(string message, Color textColor, System.Action onComplete = null)
     {
+        announcementText.gameObject.SetActive(true);
+        backgroundImage.gameObject.SetActive(true);
+
         gameObject.SetActive(true);
         announcementText.text = message;
         announcementText.color = textColor;
-        //if (backgroundImage != null)
-            //backgroundImage.color = bgColor;
 
         float canvasWidth = ((RectTransform)announcementTransform.parent).rect.width;
 
@@ -38,11 +42,11 @@ public class MovingAnnouncementUI : MonoBehaviour
 
         announcementTransform.anchoredPosition = startPos;
 
-        StopAllCoroutines(); // In case something was already running
-        StartCoroutine(AnimateAnnouncement());
+        StopAllCoroutines(); // Stop any previous animation
+        StartCoroutine(AnimateAnnouncement(onComplete));
     }
 
-    private IEnumerator AnimateAnnouncement()
+    private IEnumerator AnimateAnnouncement(System.Action onComplete)
     {
         while (Vector2.Distance(announcementTransform.anchoredPosition, midPos) > 10f)
         {
@@ -59,5 +63,27 @@ public class MovingAnnouncementUI : MonoBehaviour
         }
 
         gameObject.SetActive(false);
+
+        onComplete?.Invoke(); // ✅ Trigger event logic AFTER announcement ends
     }
+
+
+    //private IEnumerator AnimateAnnouncement()
+    //{
+    //    while (Vector2.Distance(announcementTransform.anchoredPosition, midPos) > 10f)
+    //    {
+    //        announcementTransform.anchoredPosition = Vector2.MoveTowards(announcementTransform.anchoredPosition, midPos, moveSpeed * Time.deltaTime);
+    //        yield return null;
+    //    }
+
+    //    yield return new WaitForSeconds(stopDuration);
+
+    //    while (Vector2.Distance(announcementTransform.anchoredPosition, endPos) > 10f)
+    //    {
+    //        announcementTransform.anchoredPosition = Vector2.MoveTowards(announcementTransform.anchoredPosition, endPos, moveSpeed * Time.deltaTime);
+    //        yield return null;
+    //    }
+
+    //    gameObject.SetActive(false);
+    //}
 }
