@@ -126,6 +126,6 @@ public class RandomEventManager : MonoBehaviour
                     }
                 }
             );
-        }
+        }   
     }
 }
