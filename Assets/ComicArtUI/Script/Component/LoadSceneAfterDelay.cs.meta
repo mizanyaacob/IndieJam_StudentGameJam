@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 446e043606cfb854db7ede28b36f4056
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249458
+  packageName: UI 23 - Comic Menu
+  packageVersion: 1.0
+  assetPath: Assets/ComicArtUI/Script/Component/LoadSceneAfterDelay.cs
+  uploadId: 570138

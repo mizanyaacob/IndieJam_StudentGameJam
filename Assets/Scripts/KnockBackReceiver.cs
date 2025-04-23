@@ -18,6 +18,8 @@ public class KnockbackReceiver : MonoBehaviour
     private float dizzyTimeRemaining = 0f;
     private bool isDizzy = false;
 
+    //public GameObject hitEffectPrefab; // Prefab to instantiate on hit
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -25,19 +27,23 @@ public class KnockbackReceiver : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void ApplyKnockback(Vector3 direction, float force, float duration)
+    // In KnockbackReceiver.cs
+    public void ApplyKnockback(Vector3 direction, float force, float duration, bool countAsHit = true)
     {
         if (isDizzy) return; // Ignore knockback if dizzy
+
         knockbackVelocity = direction * force;
         knockbackTimeRemaining = duration;
 
-        // Increment hit counter when receiving knockback
-        hitCount++;
-
-        // Check if player should be dizzy
-        if (hitCount % hitsUntilDizzy == 0)
+        // Only increment hit counter if countAsHit is true
+        if (countAsHit)
         {
-            TriggerDizzyState();
+            hitCount++;
+            // Check if player should be dizzy
+            if (hitCount % hitsUntilDizzy == 0)
+            {
+                TriggerDizzyState();
+            }
         }
 
         // Let other components know the player is being knocked back
@@ -47,25 +53,21 @@ public class KnockbackReceiver : MonoBehaviour
         }
     }
 
-    private void TriggerDizzyState()
+    private void TriggerDizzyState(bool resetDuration = true)
     {
         isDizzy = true;
-        dizzyTimeRemaining = dizzyDuration;
 
-        // Set dizzy animation bool to true
+        if (resetDuration)
+            dizzyTimeRemaining = dizzyDuration;
+
         if (animator != null)
         {
             animator.SetBool(dizzyAnimationBool, true);
         }
 
-        //// Optional: Disable player controls while dizzy
-        //if (playerController != null)
-        //{
-        //    playerController.enabled = false;
-        //}
-
         Debug.Log($"Player is dizzy! Hit count: {hitCount}");
     }
+
 
     private void Update()
     {
@@ -125,4 +127,21 @@ public class KnockbackReceiver : MonoBehaviour
     {
         return isDizzy;
     }
+
+    public void ForceDizzy(float customDuration = -1f)
+    {
+        if (!isDizzy)
+        {
+            hitCount = hitsUntilDizzy;
+
+            // If custom duration is provided, override the default
+            if (customDuration > 0f)
+            {
+                dizzyDuration = customDuration;
+            }
+
+            TriggerDizzyState();
+        }
+    }
+
 }

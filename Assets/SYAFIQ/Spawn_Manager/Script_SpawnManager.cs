@@ -1,4 +1,4 @@
-
+﻿
 
 using System.Collections;
 using UnityEngine;
@@ -22,6 +22,10 @@ public class Script_SpawnManager : MonoBehaviour
     [Header("Spawn Timing")]
     public float spawnInterval = 1f;
 
+    [SerializeField] private float spawnRadius = 10f;
+
+    [SerializeField] private MovingAnnouncementUI movingAnnouncementUI; // Reference to the UI script
+
 
 
     public int ObjectCount;
@@ -29,6 +33,9 @@ public class Script_SpawnManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnLoop());
+
+        movingAnnouncementUI = FindObjectOfType<MovingAnnouncementUI>();
+
     }
 
     IEnumerator SpawnLoop()
@@ -54,10 +61,10 @@ public class Script_SpawnManager : MonoBehaviour
             Random.Range(-SpawnerSize.y / 2, SpawnerSize.y / 2)); // Random Z (depth)
 
 
-        float radius = 10f;
-        Vector3 point = Random.insideUnitSphere * radius;
+        //float radius = 10f;
+        Vector3 point = TargetObject.transform.position + Random.insideUnitSphere * spawnRadius;
+        point.y = 10f; // Control height if needed
 
-        point.y = 10f;
 
         // Apply rotation from TargetObject to localOffset
         Vector3 spawnPos = TargetObject.transform.position + TargetObject.transform.rotation * localOffset;
@@ -88,18 +95,17 @@ public class Script_SpawnManager : MonoBehaviour
         {
             Gizmos.color = GizmosColor;
 
-            // Save the current matrix
+            // Draw cube area (if still needed)
             Matrix4x4 oldMatrix = Gizmos.matrix;
-
-            // Apply rotation and position to the Gizmos matrix
             Gizmos.matrix = Matrix4x4.TRS(TargetObject.transform.position, TargetObject.transform.rotation, Vector3.one);
-
-            // Draw the rotated wire cube
             Gizmos.DrawWireCube(Vector3.zero, SpawnerSize);
-
-            // Restore the old matrix
             Gizmos.matrix = oldMatrix;
+
+            // Draw spawn sphere radius
+            Gizmos.DrawWireSphere(TargetObject.transform.position, 10f); // match your spawn radius
         }
     }
+
+
 
 }

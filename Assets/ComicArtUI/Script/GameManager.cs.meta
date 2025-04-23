@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 25df8d08127f9314f8d014b322b5fda3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 249458
+  packageName: UI 23 - Comic Menu
+  packageVersion: 1.0
+  assetPath: Assets/ComicArtUI/Script/GameManager.cs
+  uploadId: 570138

@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 16fa168dccacd704181d49a5266c9ecd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - animator: {instanceID: 0}
+  - rightFistHitboxObject: {instanceID: 0}
+  - leftFistHitboxObject: {instanceID: 0}
+  - dashEffect: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

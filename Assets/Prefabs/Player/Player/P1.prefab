@@ -1336,6 +1336,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackVelocity: {x: 0, y: 0, z: 0}
+  hitCount: 0
+  hitsUntilDizzy: 10
+  dizzyAnimationBool: IsDizzy
+  dizzyDuration: 3
 --- !u!135 &1667180692865092017
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1373,6 +1377,9 @@ MonoBehaviour:
   eatingTime: 5
   consumingTimerUI: {fileID: 538071757248846983}
   timerSlider: {fileID: 6957371055721072818}
+  invertedDuration: 5
+  normalActionMap: Player
+  invertedActionMap: Inverted
 --- !u!1 &3805565582912160155
 GameObject:
   m_ObjectHideFlags: 0
@@ -3175,13 +3182,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -4728426434207774260, guid: 9191e595e156bc44683b346164352685, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5688241902073655999}
+      addedObject: {fileID: 2237032444059953844}
     - targetCorrespondingSourceObject: {fileID: -4728426434207774260, guid: 9191e595e156bc44683b346164352685, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6251665331986603484}
     - targetCorrespondingSourceObject: {fileID: 2715566404302941441, guid: 9191e595e156bc44683b346164352685, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7789730640868735945}
+      addedObject: {fileID: 3986124739043537283}
     - targetCorrespondingSourceObject: {fileID: 2715566404302941441, guid: 9191e595e156bc44683b346164352685, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5039706312735884847}
@@ -3191,7 +3198,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2715566404302941441, guid: 9191e595e156bc44683b346164352685, type: 3}
   m_PrefabInstance: {fileID: 7545401935745756331}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &7789730640868735945
+--- !u!65 &3986124739043537283
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3210,8 +3217,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 1.19, z: 0}
 --- !u!114 &5039706312735884847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3228,12 +3235,13 @@ MonoBehaviour:
   knockbackDuration: 0.5
   useUpwardKnockback: 1
   upwardForce: 1
+  hitPrefabs: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
 --- !u!1 &6257723234680120679 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4728426434207774260, guid: 9191e595e156bc44683b346164352685, type: 3}
   m_PrefabInstance: {fileID: 7545401935745756331}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &5688241902073655999
+--- !u!65 &2237032444059953844
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3252,8 +3260,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 1.09, z: 0}
 --- !u!114 &6251665331986603484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3270,6 +3278,7 @@ MonoBehaviour:
   knockbackDuration: 0.5
   useUpwardKnockback: 1
   upwardForce: 1
+  hitPrefabs: {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 3}
 --- !u!4 &8015314869594540864 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9191e595e156bc44683b346164352685, type: 3}
