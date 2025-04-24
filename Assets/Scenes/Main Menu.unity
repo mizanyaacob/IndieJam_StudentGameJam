@@ -799,7 +799,7 @@ GameObject:
   - component: {fileID: 516864632}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -824,8 +824,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 846e7e55393a9a34aa0722f9808fc775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSource: {fileID: 516864633}
-  SFXSource: {fileID: 516864632}
+  musicSource: {fileID: 119256543}
+  SFXSource: {fileID: 440865557}
+  sceneMusicList:
+  - sceneName: Main Menu
+    musicClip: {fileID: 8300000, guid: ec79a6fe7348c9b42bf998aabacb65f6, type: 3}
+  - sceneName: BlockoutSyafiq
+    musicClip: {fileID: 8300000, guid: a496825aea510114cb4de9eed9a8ce17, type: 3}
+  Menu: {fileID: 0}
+  Gameplay: {fileID: 8300000, guid: a496825aea510114cb4de9eed9a8ce17, type: 3}
   GameEnd: {fileID: 0}
   UpcomingEvent: {fileID: 0}
   Explosion: {fileID: 0}
@@ -1686,7 +1693,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Pilih Map
+          m_StringArgument: BlockoutSyafiq
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1932353320
