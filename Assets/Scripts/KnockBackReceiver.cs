@@ -1,4 +1,4 @@
-using StarterAssets;
+﻿using StarterAssets;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -18,6 +18,12 @@ public class KnockbackReceiver : MonoBehaviour
     private float dizzyTimeRemaining = 0f;
     private bool isDizzy = false;
 
+    [Header("Firecracker Impact")]
+    [SerializeField] private float dizzyThresholdMultiplierWhenHoldingFirecracker = 0.5f; // 50% fewer hits needed
+
+
+    private PlayerPickup playerPickup; // Reference to PlayerPickup script
+
     //public GameObject hitEffectPrefab; // Prefab to instantiate on hit
 
     private void Awake()
@@ -25,6 +31,7 @@ public class KnockbackReceiver : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         playerController = GetComponent<ThirdPersonController>();
         animator = GetComponent<Animator>();
+        playerPickup = GetComponent<PlayerPickup>(); // Initialize PlayerPickup reference
     }
 
     // In KnockbackReceiver.cs
@@ -35,23 +42,30 @@ public class KnockbackReceiver : MonoBehaviour
         knockbackVelocity = direction * force;
         knockbackTimeRemaining = duration;
 
-        // Only increment hit counter if countAsHit is true
         if (countAsHit)
         {
             hitCount++;
-            // Check if player should be dizzy
-            if (hitCount % hitsUntilDizzy == 0)
+
+            int currentDizzyThreshold = hitsUntilDizzy;
+
+            // 💥 Reduce threshold if holding firecracker
+            if (playerPickup != null && playerPickup.IsHoldingFirecracker())
+            {
+                currentDizzyThreshold = Mathf.CeilToInt(hitsUntilDizzy * dizzyThresholdMultiplierWhenHoldingFirecracker);
+            }
+
+            if (hitCount % currentDizzyThreshold == 0)
             {
                 TriggerDizzyState();
             }
         }
 
-        // Let other components know the player is being knocked back
         if (playerController != null)
         {
             playerController.IsKnockback = true;
         }
     }
+
 
     private void TriggerDizzyState(bool resetDuration = true)
     {
@@ -66,7 +80,14 @@ public class KnockbackReceiver : MonoBehaviour
         }
 
         Debug.Log($"Player is dizzy! Hit count: {hitCount}");
+
+        // 🧨 Drop firecracker if player is holding one
+        if (playerPickup != null && playerPickup.IsHoldingFirecracker())
+        {
+            playerPickup.DropFirecracker();
+        }
     }
+
 
 
     private void Update()
