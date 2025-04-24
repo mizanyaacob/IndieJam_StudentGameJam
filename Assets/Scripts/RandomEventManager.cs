@@ -25,6 +25,7 @@ public class RandomEventManager : MonoBehaviour
 
     [Header("Angry Makcik")]
     [SerializeField] private GameObject angryMakcikPrefab;
+    [SerializeField] private Transform MakcikSpawnPooint;
 
     private float nextEventTime;
 
@@ -38,11 +39,11 @@ public class RandomEventManager : MonoBehaviour
     void Start()
     {
         // Register available events
-        //eventList.Add(AngryAuntyEvent);
+        eventList.Add(AngryAuntyEvent);
         //eventList.Add(KuihRainEvent);
         //eventList.Add(SlipperyGroundEvent);
-        eventList.Add(BlackoutEvent); // 🆕 Blackout
-        eventList.Add(TakingPictureEvent); // 🆕 Taking Picture
+        //eventList.Add(BlackoutEvent); // 🆕 Blackout
+        //eventList.Add(TakingPictureEvent); // 🆕 Taking Picture
         ScheduleNextEvent();
     }
 
@@ -85,9 +86,10 @@ public class RandomEventManager : MonoBehaviour
                 {
                     if (angryMakcikPrefab != null)
                     {
-                        Vector3 spawnPosition = Random.insideUnitCircle * 5f; // Random position within a radius of 5 units
-                        spawnPosition.y = 0f; // Keep Z fixed for 2D plane
-                        Instantiate(angryMakcikPrefab, transform.position, Quaternion.identity);
+                        Vector2 offset2D = Random.insideUnitCircle * 10f;
+                        Vector3 spawnPosition = MakcikSpawnPooint.position + new Vector3(offset2D.x, 0f, offset2D.y);
+
+                        Instantiate(angryMakcikPrefab, spawnPosition, Quaternion.identity);
                     }
                 }
             );
@@ -211,6 +213,16 @@ public class RandomEventManager : MonoBehaviour
         {
             Debug.Log("🕶️ Firecrackers remain because it's a blackout event.");
         }
+    }
+
+    [SerializeField] private float spawnRadius = 10f;
+    [SerializeField] private Color gizmoColor = new Color(1f, 0f, 0f, 0.3f); // translucent red
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = gizmoColor;
+        Gizmos.DrawSphere(transform.position, 0.3f); // Mark center
+        Gizmos.DrawWireSphere(transform.position, spawnRadius); // Spawn area
     }
 
 }

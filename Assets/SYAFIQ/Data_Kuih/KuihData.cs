@@ -19,12 +19,14 @@ public class KuihProperties : MonoBehaviour
     public float explosionForce = 5f;
     public float knockbackDuration = 0.5f;
     public GameObject explosionEffect;
+    public GameObject badFoodEffect;
+
 
     private KuihState currentState = KuihState.Good;
     private float stateTimer;
 
     private ImpulseTrigger impulseTrigger;
-
+    private GameObject badFoodEffectInstance;
     public KuihState CurrentState => currentState;
 
     private void Awake()
@@ -69,6 +71,8 @@ public class KuihProperties : MonoBehaviour
         if (newState == KuihState.Bad)
         {
             GetComponent<Renderer>().material.color = Color.red;
+            badFoodEffectInstance = Instantiate(badFoodEffect, transform.position, Quaternion.identity);
+            badFoodEffectInstance.transform.SetParent(transform);
         }
     }
 
@@ -92,6 +96,7 @@ public class KuihProperties : MonoBehaviour
         // Optional: add explosion effect
         // Instantiate(explosionEffect, transform.position, Quaternion.identity);
         impulseTrigger.TriggerImpulse();
+        Destroy(badFoodEffectInstance);
         Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: 464f762484a029648872f960d302b43c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - explosionEffect: {instanceID: 0}
+  - badFoodEffect: {fileID: 8656522925564163052, guid: e509867be4f82f246a95eca1ee5a2d61, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

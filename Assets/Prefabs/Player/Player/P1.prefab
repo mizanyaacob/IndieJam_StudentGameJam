@@ -612,6 +612,37 @@ Transform:
   - {fileID: 510513365908443625}
   m_Father: {fileID: 8386789887004341295}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2206826037257630080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8509656267832089681}
+  m_Layer: 8
+  m_Name: DizzyPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8509656267832089681
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2206826037257630080}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.54, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3871934614390186959}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2293660577421894212
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,6 +1075,7 @@ Transform:
   - {fileID: 8297085661087059845}
   - {fileID: 3943815797866286184}
   - {fileID: 3334311261804888936}
+  - {fileID: 8509656267832089681}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2095463009884078263
@@ -1343,6 +1375,8 @@ MonoBehaviour:
   hitsUntilDizzy: 10
   dizzyAnimationBool: IsDizzy
   dizzyDuration: 3
+  dizzyEffect: {fileID: 9157105887711914197, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
+  dizzyEffectSpawnPoint: {fileID: 8509656267832089681}
   dizzyThresholdMultiplierWhenHoldingFirecracker: 0.5
 --- !u!135 &1667180692865092017
 SphereCollider:

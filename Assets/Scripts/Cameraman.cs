@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Cameraman : MonoBehaviour
@@ -19,10 +20,36 @@ public class Cameraman : MonoBehaviour
     public VisionCone visionCone; // Reference to VisionCone script
 
     private Quaternion initialRotation;
-    private float rotationTimer;
+
+    private MeshRenderer coneRenderer;
+
+    public Material visionMat;
+    public Material before;
+    public Material after;
+
+    public Transform grounChecker;
+    public GameObject Cone;
 
     void Start()
     {
+        Cone = GameObject.Find("VisionCone");
+        StartCoroutine(WaitForGroundedAndStartRoutine());
+
+        coneRenderer = Cone.gameObject.GetComponent<MeshRenderer>();
+        coneRenderer.material = before;
+
+
+    }
+
+    private IEnumerator WaitForGroundedAndStartRoutine()
+    {
+        // Wait until grounded
+        while (!IsGrounded())
+        {
+            yield return null;
+        }
+
+        // Once grounded, initialize and start behavior
         initialRotation = transform.rotation;
 
         if (visionCone != null)
@@ -34,24 +61,36 @@ public class Cameraman : MonoBehaviour
         StartCoroutine(PhotoBehaviorRoutine());
     }
 
+    private bool IsGrounded()
+    {
+        // Cast ray down to check if grounded (adjust 0.2f based on your model size)
+        return Physics.Raycast(grounChecker.position, Vector3.down, 0.3f);
+    }
+
     private IEnumerator PhotoBehaviorRoutine()
     {
-        // Rotate left-right like scanning
         float timer = 0f;
+        float rotationTimer = 0f;
+
         while (timer < photoDelay)
         {
             timer += Time.deltaTime;
+            rotationTimer += Time.deltaTime;
 
-            float yRotation = Mathf.Sin(Time.time * rotateSpeed) * rotateRange;
-            transform.rotation = initialRotation * Quaternion.Euler(0f, yRotation, 0f);
+            float yRotation = Mathf.Sin(rotationTimer * rotateSpeed) * rotateRange;
+            transform.rotation = Quaternion.Euler(0f, initialRotation.eulerAngles.y + yRotation, 0f);
 
+            coneRenderer.material = before;
             yield return null;
         }
 
-        // Flash
+        // Take the photo (set material to "after" to simulate flash)
+        coneRenderer.material = after;
+
         if (flashEffect != null)
             Instantiate(flashEffect, transform.position + transform.forward * 1f, Quaternion.identity);
 
+        // Detect players in vision cone
         Vector3 photoDirection = transform.forward;
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
@@ -73,4 +112,6 @@ public class Cameraman : MonoBehaviour
         yield return new WaitForSeconds(stayDuration);
         Destroy(gameObject);
     }
+
+
 }
