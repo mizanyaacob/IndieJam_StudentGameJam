@@ -2,11 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EventType
+{
+    None,
+    AngryAunty,
+    KuihRain,
+    SlipperyGround,
+    Blackout
+}
+
+
+
 public class RandomEventManager : MonoBehaviour
 {
     [Header("Event Settings")]
     [SerializeField] private float minTimeBetweenEvents = 15f;
     [SerializeField] private float maxTimeBetweenEvents = 30f;
+    public static EventType CurrentEvent { get; private set; } = EventType.None;
 
     [Header("UI Announcement")]
     [SerializeField] private MovingAnnouncementUI announcementUI;
@@ -20,14 +32,17 @@ public class RandomEventManager : MonoBehaviour
     private List<GameEvent> eventList = new List<GameEvent>();
 
     public GameObject lighting;
+    public GameObject firecrackerPrefab; // Reference to the firecracker prefab
+    public GameObject photographerPrefab; // Reference to the photographer prefab
 
     void Start()
     {
         // Register available events
-        eventList.Add(AngryAuntyEvent);
-        eventList.Add(KuihRainEvent);
-        eventList.Add(SlipperyGroundEvent);
+        //eventList.Add(AngryAuntyEvent);
+        //eventList.Add(KuihRainEvent);
+        //eventList.Add(SlipperyGroundEvent);
         eventList.Add(BlackoutEvent); // 🆕 Blackout
+        eventList.Add(TakingPictureEvent); // 🆕 Taking Picture
         ScheduleNextEvent();
     }
 
@@ -51,11 +66,14 @@ public class RandomEventManager : MonoBehaviour
     {
         int index = Random.Range(0, eventList.Count);
         eventList[index].Invoke();
+
+        //RemoveFirecrackersIfNeeded(); // Remove firecrackers if needed
     }
 
     // 🎯 Event Implementations
     private void AngryAuntyEvent()
     {
+        CurrentEvent = EventType.AngryAunty; // Set the current event type
         Debug.Log("Event: Angry Aunty");
 
         if (announcementUI != null)
@@ -68,7 +86,7 @@ public class RandomEventManager : MonoBehaviour
                     if (angryMakcikPrefab != null)
                     {
                         Vector3 spawnPosition = Random.insideUnitCircle * 5f; // Random position within a radius of 5 units
-                        spawnPosition.z = 0f; // Keep Z fixed for 2D plane
+                        spawnPosition.y = 0f; // Keep Z fixed for 2D plane
                         Instantiate(angryMakcikPrefab, transform.position, Quaternion.identity);
                     }
                 }
@@ -80,6 +98,7 @@ public class RandomEventManager : MonoBehaviour
 
     private void KuihRainEvent()
     {
+        CurrentEvent = EventType.KuihRain; // Set the current event type
         Debug.Log("Event: Kuih Rain");
 
         if (announcementUI != null)
@@ -111,21 +130,87 @@ public class RandomEventManager : MonoBehaviour
 
     private void BlackoutEvent()
     {
+        CurrentEvent = EventType.Blackout; // Set the current event type
         Debug.Log("Event: Blackout");
 
         if (announcementUI != null)
         {
             announcementUI.StartAnnouncement(
-                "🌑 BLACKOUT! EVERYTHING IS DARK...",
+                "🌑 BLACKOUT! EVERYTHING IS DARK...",    
                 Color.black,
                 () =>
                 {
                     if (lighting != null)
                     {
                         lighting.SetActive(false);
+                        for (int i = 0; i < 3; i++)
+                        {
+                            Vector2 offset = Random.insideUnitCircle.normalized * Random.Range(5f, 15f);
+                            Vector3 spawnPos = transform.position + new Vector3(offset.x,0f , offset.y);
+
+                            GameObject cracker = Instantiate(firecrackerPrefab, spawnPos, Quaternion.identity);
+                            Debug.Log($"🧨 Spawned firecracker at {spawnPos}");
+                        }
+
+
+                        StartCoroutine(RestoreLightingAfterDelay(15f)); // Turn lights back on after 5 seconds
                     }
                 }
             );
         }
     }
+
+    private IEnumerator RestoreLightingAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (lighting != null)
+        {
+            lighting.SetActive(true);
+            RemoveFirecrackersIfNeeded(); // Remove firecrackers after blackout
+            Debug.Log("Lighting restored after blackout.");
+        }
+    }
+
+    private void TakingPictureEvent()
+    {
+        Debug.Log("Event: Photographer Taking Picture");
+
+        CurrentEvent = EventType.None;
+
+        if (announcementUI != null)
+        {
+            announcementUI.StartAnnouncement(
+                "📸 SAY CHEESE! A PHOTOGRAPHER IS HERE!",
+                Color.magenta,
+                () =>
+                {
+                    Vector3 spawnOffset = Random.insideUnitCircle.normalized * 10f;
+                    Vector3 spawnPos = transform.position + new Vector3(spawnOffset.x, 0f, spawnOffset.y);
+
+                    Instantiate(photographerPrefab, spawnPos, Quaternion.LookRotation(-spawnOffset.normalized));
+                }
+            );
+        }
+    }
+
+
+    private void RemoveFirecrackersIfNeeded()
+    {
+        if (CurrentEvent != EventType.Blackout)
+        {
+            Firecracker[] firecrackers = FindObjectsOfType<Firecracker>();
+            foreach (Firecracker firecracker in firecrackers)
+            {
+                Destroy(firecracker.gameObject);
+            }
+
+            Debug.Log("🔥 Firecrackers destroyed because the event is not blackout.");
+        }
+        else
+        {
+            Debug.Log("🕶️ Firecrackers remain because it's a blackout event.");
+        }
+    }
+
 }
