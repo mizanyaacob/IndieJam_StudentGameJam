@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class ScoringManager : MonoBehaviour
 {
@@ -11,7 +13,15 @@ public class ScoringManager : MonoBehaviour
     [Header("Player Score UI")]
     [SerializeField] private int maxScore = 100;
     [SerializeField] private Image[] playerScoreImages;
-    [SerializeField] private TMP_Text[] score; 
+    [SerializeField] private TMP_Text[] score;
+
+    [Header("TIMER")]
+    [SerializeField] private float timerDuration = 120f; // Duration in seconds
+    [SerializeField] private TMP_Text timerText; // Reference to the UI Text for the timer
+    private float remainingTime;
+    private bool timerRunning = false;
+
+
 
     private void Awake()
     {
@@ -24,6 +34,40 @@ public class ScoringManager : MonoBehaviour
                 image.fillAmount = 0f; // Initialize fill amount to 0
         }   
     }
+
+    private void Start()
+    {
+       timerText.text = timerDuration.ToString(); // Initialize the timer text
+        // Initialize scores
+        P1Score = 0;
+        P2Score = 0;
+        P3Score = 0;
+        P4Score = 0;
+
+        // Start the timer
+        StartTimer();
+    }
+    private void Update()
+    {
+        if (!timerRunning) return;
+
+        remainingTime -= Time.deltaTime;
+        if (timerText != null)
+        {
+            timerText.text = Mathf.Ceil(remainingTime).ToString(); // Update the timer text
+        }
+
+        if(remainingTime <= 10f)
+        {
+            timerText.color = Color.red; // Change color to red when time is low
+        }   
+        if (remainingTime <= 0f)
+        {
+            timerRunning = false;
+            HandleGameOver();
+        }
+    }
+
 
     public void AddScore(int playerIndex, int value)
     {
@@ -69,6 +113,19 @@ public class ScoringManager : MonoBehaviour
             score[playerIndex].text = currentScore.ToString();
         }
     }
+
+    public void StartTimer()
+    {
+        remainingTime = timerDuration;
+        timerRunning = true;
+    }
+    private void HandleGameOver()
+    {
+        Debug.Log("Time's up! Game Over.");
+        SceneManager.LoadScene("GameOverScene"); // Make sure you add this scene to your Build Settings
+    }
+
+
 
 
 }
