@@ -14,8 +14,9 @@ public class AudioManager : MonoBehaviour
 
 
     [Header("---------SFX-------")]
-   
-    
+
+    public AudioClip Hover;
+    public AudioClip Click;
     public AudioClip GameEnd;
     public AudioClip UpcomingEvent;
     public AudioClip Explosion;

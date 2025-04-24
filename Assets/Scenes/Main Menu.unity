@@ -831,16 +831,18 @@ MonoBehaviour:
     musicClip: {fileID: 8300000, guid: ec79a6fe7348c9b42bf998aabacb65f6, type: 3}
   - sceneName: BlockoutSyafiq
     musicClip: {fileID: 8300000, guid: a496825aea510114cb4de9eed9a8ce17, type: 3}
-  Menu: {fileID: 0}
-  Gameplay: {fileID: 8300000, guid: a496825aea510114cb4de9eed9a8ce17, type: 3}
+  Hover: {fileID: 8300000, guid: 88994cd0bf14a86449f6f70d736be247, type: 3}
+  Click: {fileID: 0}
   GameEnd: {fileID: 0}
   UpcomingEvent: {fileID: 0}
   Explosion: {fileID: 0}
   AngryAunty: {fileID: 0}
   Stun: {fileID: 0}
   Punch: {fileID: 0}
+  Dash: {fileID: 0}
   GetHit: {fileID: 0}
   Eat: {fileID: 0}
+  Eat3sec: {fileID: 0}
   Countdown: {fileID: 0}
   CameraCapture: {fileID: 0}
 --- !u!4 &516864631
