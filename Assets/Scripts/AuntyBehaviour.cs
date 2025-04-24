@@ -41,30 +41,48 @@ public class AuntyBehavior : MonoBehaviour
         StartCoroutine(DespawnAfterTime());
     }
 
+    private bool isInCooldown = false;
+
     private void Update()
     {
-        if (targetPlayer)
+        if (isInCooldown || targetPlayer == null) return;
+
+        agent.SetDestination(targetPlayer.transform.position);
+
+        float distance = Vector3.Distance(transform.position, targetPlayer.transform.position);
+        if (distance <= slapRange && Time.time - lastSlapTime > slapCooldown)
         {
-            agent.SetDestination(targetPlayer.transform.position);
+            lastSlapTime = Time.time;
+            stick.SetTarget(targetPlayer); // Pass target to stick
+            animator.SetTrigger("Attack");   // Animation event will call SlapCurrentTarget()
 
-            float distance = Vector3.Distance(transform.position, targetPlayer.transform.position);
-            if (distance <= slapRange && Time.time - lastSlapTime > slapCooldown)
-            {
-                lastSlapTime = Time.time;
-                stick.SetTarget(targetPlayer); // Pass target to stick
-                animator.SetTrigger("Attack");   // Animation event will call SlapCurrentTarget()
+            slappedPlayers.Add(targetPlayer);
 
-                slappedPlayers.Add(targetPlayer);
-                targetPlayer = FindClosestPlayer();
-
-                if (targetPlayer == null)
-                {
-                    animator.SetFloat("Speed", 0f);
-                    agent.ResetPath();
-                }
-            }
+            StartCoroutine(DelayBeforeNextPlayer());
         }
     }
+
+
+    private IEnumerator DelayBeforeNextPlayer()
+    {
+        isInCooldown = true;
+
+        agent.isStopped = true;
+        animator.SetFloat("Speed", 0f);
+
+        yield return new WaitForSeconds(2f); // wait time after slap
+
+        targetPlayer = FindClosestPlayer();
+
+        if (targetPlayer != null)
+        {
+            agent.isStopped = false;
+            animator.SetFloat("Speed", 4f);
+        }
+
+        isInCooldown = false;
+    }
+
 
     private GameObject FindClosestPlayer()
     {
