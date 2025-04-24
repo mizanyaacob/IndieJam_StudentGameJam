@@ -11,6 +11,9 @@ public class RandomEventManager : MonoBehaviour
     [Header("UI Announcement")]
     [SerializeField] private MovingAnnouncementUI announcementUI;
 
+    [Header("Angry Makcik")]
+    [SerializeField] private GameObject angryMakcikPrefab;
+
     private float nextEventTime;
 
     private delegate void GameEvent();
@@ -59,7 +62,16 @@ public class RandomEventManager : MonoBehaviour
         {
             announcementUI.StartAnnouncement(
                 "💢 ANGRY AUNTY IS COMING! YOU BETTER RUN!! 💨",
-                Color.red
+                Color.red,
+                () =>
+                {
+                    if (angryMakcikPrefab != null)
+                    {
+                        Vector3 spawnPosition = Random.insideUnitCircle * 5f; // Random position within a radius of 5 units
+                        spawnPosition.z = 0f; // Keep Z fixed for 2D plane
+                        Instantiate(angryMakcikPrefab, transform.position, Quaternion.identity);
+                    }
+                }
             );
         }
 
@@ -114,8 +126,6 @@ public class RandomEventManager : MonoBehaviour
                     }
                 }
             );
-        }
+        }   
     }
-
-
 }
