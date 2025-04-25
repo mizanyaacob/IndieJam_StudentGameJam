@@ -247,4 +247,10 @@ public class PlayerFoodConsumer : MonoBehaviour
     {
         return foodInRange != null ? foodInRange.name : "None";
     }
+
+    // Add this to PlayerFoodConsumer.cs
+    public int GetFoodConsumed()
+    {
+        return foodConsumed;
+    }
 }

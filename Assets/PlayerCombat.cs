@@ -61,6 +61,7 @@ public class PlayerCombat : MonoBehaviour
     private CharacterController characterController;
 
     private PlayerFoodConsumer playerFoodConsumer;
+    private AudioManager audioManager; // Reference to AudioManager script
 
     private void Awake()
     {
@@ -77,6 +78,7 @@ public class PlayerCombat : MonoBehaviour
         emotePlaceHoder.enabled = false; // Hide emote initially
 
         playerMarker.SetActive(true); // Hide player marker initially
+        audioManager = FindAnyObjectByType<AudioManager>();
     }
 
     public void OnAttack()
@@ -94,6 +96,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (Time.time - lastDashTime < dashCooldown || isDashing) return;
 
+        audioManager.PlaySFX(audioManager.Dash);
         lastDashTime = Time.time;
         dashStartTime = Time.time;
 

@@ -21,6 +21,12 @@ public class AuntyBehavior : MonoBehaviour
 
     private AuntyStick stick;
 
+    private AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = FindAnyObjectByType<AudioManager>();
+    }
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -37,7 +43,7 @@ public class AuntyBehavior : MonoBehaviour
         {
             animator.SetFloat("Speed", 4f);
         }
-
+        audioManager.PlaySFX(audioManager.AngryAunty);
         StartCoroutine(DespawnAfterTime());
     }
 

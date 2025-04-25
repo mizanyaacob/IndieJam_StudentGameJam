@@ -21,6 +21,10 @@ public class ScoringManager : MonoBehaviour
     private float remainingTime;
     private bool timerRunning = false;
 
+    private AudioManager audioManager; // Reference to AudioManager script
+    private bool hasPlayedCountdownSFX = false;
+
+
 
 
     private void Awake()
@@ -33,6 +37,8 @@ public class ScoringManager : MonoBehaviour
             if (image != null)
                 image.fillAmount = 0f; // Initialize fill amount to 0
         }   
+
+        audioManager = FindAnyObjectByType<AudioManager>();
     }
 
     private void Start()
@@ -52,21 +58,31 @@ public class ScoringManager : MonoBehaviour
         if (!timerRunning) return;
 
         remainingTime -= Time.deltaTime;
+
         if (timerText != null)
         {
             timerText.text = Mathf.Ceil(remainingTime).ToString(); // Update the timer text
         }
 
-        if(remainingTime <= 10f)
+        if (remainingTime <= 10f)
         {
             timerText.color = Color.red; // Change color to red when time is low
-        }   
+        }
+
+        // Play countdown sound once at 5 seconds left
+        if (!hasPlayedCountdownSFX && remainingTime <= 5f)
+        {
+            audioManager.PlaySFX(audioManager.Countdown);
+            hasPlayedCountdownSFX = true;
+        }
+
         if (remainingTime <= 0f)
         {
             timerRunning = false;
             HandleGameOver();
         }
     }
+
 
 
     public void AddScore(int playerIndex, int value)
@@ -122,6 +138,7 @@ public class ScoringManager : MonoBehaviour
     private void HandleGameOver()
     {
         Debug.Log("Time's up! Game Over.");
+        audioManager.PlaySFX(audioManager.GameEnd);
         SceneManager.LoadScene("GameOverScene"); // Make sure you add this scene to your Build Settings
     }
 
