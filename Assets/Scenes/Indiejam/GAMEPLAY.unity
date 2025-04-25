@@ -1104,7 +1104,7 @@ GameObject:
   - component: {fileID: 115626444}
   - component: {fileID: 115626443}
   m_Layer: 5
-  m_Name: Score Mijan
+  m_Name: Score Paeh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1604,10 +1604,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1193180883}
     m_Modifications:
-    - target: {fileID: 4674352715987043165, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 78006055191788540, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
       propertyPath: m_Size.x
       value: 0.00015
@@ -1634,6 +1630,14 @@ PrefabInstance:
       objectReference: {fileID: 9000000, guid: 4c5d7a1687b53c14194daaa9f795206e, type: 3}
     - target: {fileID: 2913130697733526776, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
       propertyPath: playerIndex
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3220296098417704377, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: PlayerMarker
+      value: 
+      objectReference: {fileID: 237143029}
+    - target: {fileID: 3220296098417704377, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: dizzyDuration
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3220296098417704377, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
@@ -1689,6 +1693,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4792121695305962550, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: dashDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4792121695305962550, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
       propertyPath: playerMarker
       value: 
       objectReference: {fileID: 237143029}
@@ -1732,6 +1740,22 @@ PrefabInstance:
       propertyPath: 'emoteSprites.Array.data[3]'
       value: 
       objectReference: {fileID: 21300000, guid: 65d5fd81cbeb3b843897a58be39b391f, type: 3}
+    - target: {fileID: 4808768852159672827, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: m_text
+      value: P4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808768852159672827, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808768852159672827, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.1322509
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808768852159672827, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278255394
+      objectReference: {fileID: 0}
     - target: {fileID: 6592316019963857949, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
       propertyPath: effectPoint
       value: 
@@ -1747,7 +1771,7 @@ PrefabInstance:
     - target: {fileID: 6592316019963857949, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
       propertyPath: invertedEffect
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1524533970525000399, guid: 1133dff0b5fda2e4295d301899b1582d, type: 3}
     - target: {fileID: 7065686239431143127, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
       propertyPath: hitPrefabs
       value: 
@@ -1783,6 +1807,10 @@ PrefabInstance:
     - target: {fileID: 8615979566788382500, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674352715987043165, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -2072,6 +2100,26 @@ PrefabInstance:
     - target: {fileID: 4674352715987043165, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430741143014071332, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: m_text
+      value: P3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430741143014071332, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.6636267
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430741143014071332, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430741143014071332, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430741143014071332, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4289330944
       objectReference: {fileID: 0}
     - target: {fileID: 5828456889210317583, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
       propertyPath: m_Name
@@ -2925,7 +2973,7 @@ GameObject:
   - component: {fileID: 417378834}
   - component: {fileID: 417378833}
   m_Layer: 5
-  m_Name: Score Ayep
+  m_Name: Score Capik
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4877,7 +4925,7 @@ GameObject:
   - component: {fileID: 809214793}
   - component: {fileID: 809214792}
   m_Layer: 5
-  m_Name: Image Syapik
+  m_Name: Image Mijang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4923,7 +4971,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 65d5fd81cbeb3b843897a58be39b391f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b5c2c972418351e408e92241e4dd77a6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8019,7 +8067,7 @@ GameObject:
   - component: {fileID: 1382868264}
   - component: {fileID: 1382868263}
   m_Layer: 5
-  m_Name: Image Mijan
+  m_Name: Image Paeh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8065,7 +8113,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b5c2c972418351e408e92241e4dd77a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2ab5bb13fac4f8748b1853e510b76b28, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9016,7 +9064,7 @@ GameObject:
   - component: {fileID: 1565579791}
   - component: {fileID: 1565579790}
   m_Layer: 5
-  m_Name: Score Syapik
+  m_Name: Score Mijang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9315,7 +9363,7 @@ GameObject:
   - component: {fileID: 1597122691}
   - component: {fileID: 1597122690}
   m_Layer: 5
-  m_Name: Score Paeh
+  m_Name: Score Ayepp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10791,7 +10839,7 @@ GameObject:
   - component: {fileID: 1964244920}
   - component: {fileID: 1964244919}
   m_Layer: 5
-  m_Name: Image Paeh
+  m_Name: Image Ayepp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10837,7 +10885,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2ab5bb13fac4f8748b1853e510b76b28, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68637a3991917db4fa3f38bd8ae29af7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11308,7 +11356,7 @@ GameObject:
   - component: {fileID: 2074268823}
   - component: {fileID: 2074268822}
   m_Layer: 5
-  m_Name: Image Ayep
+  m_Name: Image Capik
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11354,7 +11402,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 68637a3991917db4fa3f38bd8ae29af7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65d5fd81cbeb3b843897a58be39b391f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11864,6 +11912,26 @@ PrefabInstance:
       propertyPath: 'emoteSprites.Array.data[3]'
       value: 
       objectReference: {fileID: 21300000, guid: 76adfb75c391928418f34f83d066d2ce, type: 3}
+    - target: {fileID: 8264718298268386178, guid: 417727110de746246aea699ce529996d, type: 3}
+      propertyPath: m_text
+      value: P2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8264718298268386178, guid: 417727110de746246aea699ce529996d, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8264718298268386178, guid: 417727110de746246aea699ce529996d, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.15091324
+      objectReference: {fileID: 0}
+    - target: {fileID: 8264718298268386178, guid: 417727110de746246aea699ce529996d, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8264718298268386178, guid: 417727110de746246aea699ce529996d, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294911488
+      objectReference: {fileID: 0}
     - target: {fileID: 8596748596779855163, guid: 417727110de746246aea699ce529996d, type: 3}
       propertyPath: playerIndex
       value: 1
