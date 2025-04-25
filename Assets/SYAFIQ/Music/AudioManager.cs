@@ -29,6 +29,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip Eat3sec;
     public AudioClip Countdown;
     public AudioClip CameraCapture;
+    public AudioClip EmoteSad;
+    public AudioClip EmoteHappy;
+    public AudioClip EmoteAngry;
+    public AudioClip EmoteWow;
 
     [Serializable]
     public class SceneMusicData
