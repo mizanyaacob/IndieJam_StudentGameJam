@@ -139,10 +139,7 @@ public class ScoringManager : MonoBehaviour
     {
         Debug.Log("Time's up! Game Over.");
         audioManager.PlaySFX(audioManager.GameEnd);
-        SceneManager.LoadScene("GameOverScene"); // Make sure you add this scene to your Build Settings
+        SceneManager.LoadScene("GAMEOVER"); // Make sure you add this scene to your Build Settings
     }
-
-
-
 
 }
