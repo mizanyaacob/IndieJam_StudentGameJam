@@ -25,6 +25,9 @@ public class PlayerFoodConsumer : MonoBehaviour
     [SerializeField] private float invertedDuration = 5f;
     [SerializeField] private string normalActionMap = "Player";
     [SerializeField] private string invertedActionMap = "Inverted";
+    [SerializeField] private GameObject invertedEffect;
+    [SerializeField] private Transform effectPoint; // Optional vomit effect prefab
+    [SerializeField] private GameObject PlayerMarker; // Optional player marker for emote position
 
     [Header("PLayer Score")]
     [SerializeField] private int playerIndex = 0; // Assuming player index is set somewhere else
@@ -77,7 +80,9 @@ public class PlayerFoodConsumer : MonoBehaviour
                                 if (invertCoroutine != null)
                                     StopCoroutine(invertCoroutine);
 
-                                invertCoroutine = StartCoroutine(TemporarilyInvertControls());
+                                GameObject vomitEffect = Instantiate(invertedEffect, effectPoint.position, Quaternion.identity);
+                                vomitEffect.transform.SetParent(effectPoint);
+                                invertCoroutine = StartCoroutine(TemporarilyInvertControls(vomitEffect));
                             }
                         }
 
@@ -139,13 +144,17 @@ public class PlayerFoodConsumer : MonoBehaviour
 
 
 
-    private IEnumerator TemporarilyInvertControls()
+    private IEnumerator TemporarilyInvertControls(GameObject effect)
     {
+        PlayerMarker.SetActive(false); // ✅ Hide player marker during inverted controls
         playerInput.SwitchCurrentActionMap(invertedActionMap);
         yield return new WaitForSeconds(invertedDuration);
         playerInput.SwitchCurrentActionMap(normalActionMap);
         Debug.Log($"{gameObject.name} controls reverted to normal.");
+        Destroy(effect);
+        PlayerMarker.SetActive(true); // ✅ Show player marker again
     }
+
 
     private void SelectClosestFood()
     {
