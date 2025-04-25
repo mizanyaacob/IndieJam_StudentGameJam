@@ -1716,7 +1716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &858267800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2720,8 +2720,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8392168308977328328}
   - {fileID: 3871934612700489927}
+  - {fileID: 8392168308977328328}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1210250507 stripped
@@ -3793,6 +3793,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447482127}
   m_CullTransparentMesh: 1
+--- !u!225 &1452936483 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 4272483573348167896, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+  m_PrefabInstance: {fileID: 2172652714624885537}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1463240587
 GameObject:
   m_ObjectHideFlags: 0
@@ -5258,6 +5263,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: emoteCooldown
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: emoteDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: emotePlaceHoder
+      value: 
+      objectReference: {fileID: 2172652714624885538}
+    - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: emoteCanvasGroup
+      value: 
+      objectReference: {fileID: 1452936483}
+    - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
       propertyPath: leftFistHitboxObject
       value: 
       objectReference: {fileID: 645972675}
@@ -5265,6 +5286,30 @@ PrefabInstance:
       propertyPath: rightFistHitboxObject
       value: 
       objectReference: {fileID: 417343652}
+    - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: emoteSprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: 'emoteSprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 73a0644d867766e46bd5fba657c91b49, type: 3}
+    - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: 'emoteSprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 3a96320876d67f246b13522f6964e34d, type: 3}
+    - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: 'emoteSprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 5fa5cafde58b2c541b2e347bb7e7cc84, type: 3}
+    - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: 'emoteSprites.Array.data[3]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 2925bed5da4e1b04e9e9f4609fa58c51, type: 3}
+    - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: 'emoteSprites.Array.data[4]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 2925bed5da4e1b04e9e9f4609fa58c51, type: 3}
     - target: {fileID: 3314741922495132413, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5353,6 +5398,17 @@ PrefabInstance:
       addedObject: {fileID: 1325659241}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+--- !u!114 &2172652714624885538 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5852748014791749492, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+  m_PrefabInstance: {fileID: 2172652714624885537}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3129594191457770450
 PrefabInstance:
   m_ObjectHideFlags: 0

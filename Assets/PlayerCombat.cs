@@ -1,5 +1,8 @@
+﻿using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(CharacterController))]
@@ -17,6 +20,29 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float dashCooldown = 2f;
     [SerializeField] private float dashDuration = 0.2f; // Total time to dash
     [SerializeField] private GameObject dashEffect; // Optional dash effect prefab
+
+
+    [Header("Emote Settings")]
+    [SerializeField] private Image emotePlaceHoder;
+    [SerializeField] private List<Sprite> emoteSprites;
+    [SerializeField] private float emoteDuration = 3f; // Duration for each emote
+    [SerializeField] private CanvasGroup emoteCanvasGroup; // Optional canvas group for fading in/out
+    private float emoteFloatSpeed = 1f;
+    private float emoteFloatHeight = 0.1f;
+    [Header("Emote Display")]
+    [SerializeField] private float emoteCooldown = 1f;
+    private float lastEmoteTime = -Mathf.Infinity;
+
+    private Vector3 emoteOriginalPos;
+    private Quaternion emoteOriginalRot;
+    private Vector3 emoteOriginalScale;
+    private bool isScalingUp;
+    private float emoteScaleTime;
+    private float scaleDuration = 0.2f;
+
+
+    private float emoteDisplayStartTime;
+    private bool isEmoteShowing;
 
     private float lastDashTime;
     private bool isDashing;
@@ -45,6 +71,8 @@ public class PlayerCombat : MonoBehaviour
         characterController = GetComponent<CharacterController>();
 
         playerFoodConsumer = GetComponent<PlayerFoodConsumer>();
+
+        emotePlaceHoder.enabled = false; // Hide emote initially
     }
 
     public void OnAttack()
@@ -99,6 +127,49 @@ public class PlayerCombat : MonoBehaviour
                 isDashing = false;
             }
         }
+
+        if (isEmoteShowing)
+        {
+            float elapsed = Time.time - emoteDisplayStartTime;
+
+            // === Float up/down ===
+            float floatOffset = Mathf.Sin(elapsed * emoteFloatSpeed) * emoteFloatHeight;
+            emotePlaceHoder.transform.localPosition = emoteOriginalPos + new Vector3(0, floatOffset, 0);
+
+            // === Tilt rotation ===
+            float tiltAngle = Mathf.Sin(elapsed * 2f) * 5f;
+            emotePlaceHoder.transform.localRotation = Quaternion.Euler(0f, 0f, tiltAngle);
+
+            // === Pop-in scale ===
+            if (isScalingUp)
+            {
+                emoteScaleTime += Time.deltaTime;
+                float scaleProgress = Mathf.Clamp01(emoteScaleTime / scaleDuration);
+                float easedScale = Mathf.Sin(scaleProgress * Mathf.PI * 0.5f); // easeOutSine
+                emotePlaceHoder.transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, easedScale);
+
+                if (scaleProgress >= 1f)
+                {
+                    isScalingUp = false;
+                }
+            }
+
+            // === Fade-out ===
+            float fadeProgress = Mathf.Clamp01(elapsed / emoteDuration);
+            if (emoteCanvasGroup != null)
+                emoteCanvasGroup.alpha = 1f - fadeProgress;
+
+            // === Done showing? ===
+            if (elapsed > emoteDuration)
+            {
+                emotePlaceHoder.enabled = false;
+                isEmoteShowing = false;
+
+                if (emoteCanvasGroup != null)
+                    emoteCanvasGroup.alpha = 0f;
+            }
+        }
+
     }
 
     // Animation Events
@@ -106,4 +177,44 @@ public class PlayerCombat : MonoBehaviour
     public void EndRightPunch() => rightFistHitbox?.EndPunch();
     public void StartLeftPunch() => leftFistHitbox?.StartPunch();
     public void EndLeftPunch() => leftFistHitbox?.EndPunch();
+
+    public void OnEmote1() => ShowEmote(0);
+    public void OnEmote2() => ShowEmote(1);
+    public void OnEmote3() => ShowEmote(2);
+    public void OnEmote4() => ShowEmote(3);
+
+
+    private void ShowEmote(int index)
+    {
+        if (index < 0 || index >= emoteSprites.Count) return;
+
+        if (Time.time - lastEmoteTime < emoteCooldown) return; // 🔒 Cooldown check
+
+        lastEmoteTime = Time.time; // ✅ Register emote time
+
+        emotePlaceHoder.sprite = emoteSprites[index];
+        emotePlaceHoder.enabled = true;
+
+        if (emoteCanvasGroup != null)
+            emoteCanvasGroup.alpha = 1f;
+
+        emoteDisplayStartTime = Time.time;
+        isEmoteShowing = true;
+
+        // Save base state
+        emoteOriginalPos = Vector3.zero;
+        emoteOriginalRot = Quaternion.identity;
+        emoteOriginalScale = Vector3.zero;
+        emotePlaceHoder.transform.localPosition = emoteOriginalPos;
+        emotePlaceHoder.transform.localRotation = emoteOriginalRot;
+        emotePlaceHoder.transform.localScale = emoteOriginalScale;
+
+        // Start manual pop-in scale
+        isScalingUp = true;
+        emoteScaleTime = 0f;
+    }
+
+
+
+
 }
