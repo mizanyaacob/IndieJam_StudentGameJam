@@ -543,6 +543,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1569975225}
     m_Modifications:
+    - target: {fileID: 6794761239582932254, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 280795489712414050, guid: 604f1446b1ee9fe4a9e7ae26f6d2a48d, type: 3}
       propertyPath: m_Name
       value: GameOver_Paej
@@ -603,12 +607,28 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1165388215348393894, guid: 604f1446b1ee9fe4a9e7ae26f6d2a48d, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3805802519285454586, guid: 604f1446b1ee9fe4a9e7ae26f6d2a48d, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4575796259315077168, guid: 604f1446b1ee9fe4a9e7ae26f6d2a48d, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280670446418128277, guid: 604f1446b1ee9fe4a9e7ae26f6d2a48d, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6795485962200325538, guid: 604f1446b1ee9fe4a9e7ae26f6d2a48d, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 36fbe7d6f7699394d994cf5e94bcb8b9, type: 2}
-    - target: {fileID: 6794761239582932254, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 6945867608390810442, guid: 604f1446b1ee9fe4a9e7ae26f6d2a48d, type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -6442,6 +6462,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1359243337}
     m_Modifications:
+    - target: {fileID: 5887283181062105824, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6794761239582932254, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471090792918625041, guid: 79504d4c00ccb764b9075992d8da8064, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639601582651598845, guid: 79504d4c00ccb764b9075992d8da8064, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5054191999254599300, guid: 79504d4c00ccb764b9075992d8da8064, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6028896463438384441, guid: 79504d4c00ccb764b9075992d8da8064, type: 3}
       propertyPath: m_Name
       value: AYEP_GAME_OVER
@@ -6501,14 +6541,6 @@ PrefabInstance:
     - target: {fileID: 6404437290129217411, guid: 79504d4c00ccb764b9075992d8da8064, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5887283181062105824, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6794761239582932254, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7394,6 +7426,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1965234613}
     m_Modifications:
+    - target: {fileID: 6794761239582932254, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 201efa33960504a48bc90c7f1bed819f, type: 3}
       propertyPath: m_Avatar
       value: 
@@ -7466,12 +7502,28 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1206874426333947015, guid: a420485409872234989a1bbd07c2ef0e, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a420485409872234989a1bbd07c2ef0e, type: 3}
       propertyPath: m_Name
       value: Mijan(T-Pose)
       objectReference: {fileID: 0}
-    - target: {fileID: 6794761239582932254, guid: aa2baf3906981ba4a8f6716280aa2e29, type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 2236237030686087061, guid: a420485409872234989a1bbd07c2ef0e, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3505068965197213699, guid: a420485409872234989a1bbd07c2ef0e, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5074512353664290214, guid: a420485409872234989a1bbd07c2ef0e, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153101253863224186, guid: a420485409872234989a1bbd07c2ef0e, type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8751,6 +8803,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7685980990503444246, guid: d149c119bbfbf874e8ba144f13603a0f, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2743540441825407248, guid: 64a933a3073f9c845b66f4d7016c0155, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5826471271139200181, guid: 64a933a3073f9c845b66f4d7016c0155, type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7491157549713677149, guid: 64a933a3073f9c845b66f4d7016c0155, type: 3}

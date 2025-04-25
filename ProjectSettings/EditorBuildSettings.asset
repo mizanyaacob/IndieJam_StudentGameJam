@@ -6,14 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Pilih Map.unity
-    guid: d1d2e36683f08124eaa1297f05d913e4
-  - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 4021dffd2bd1427459fafe7472c9a7ab
   - enabled: 1
+    path: Assets/Scenes/Pilih Map.unity
+    guid: d1d2e36683f08124eaa1297f05d913e4
+  - enabled: 1
     path: Assets/Scenes/Indiejam/GAMEPLAY.unity
     guid: bfdbf0a4ecd3d2542b3e7a6787924c6f
+  - enabled: 1
+    path: Assets/Scenes/Indiejam/GAMEPLAY 2.unity
+    guid: 3d03787e301f08e48967e7d6199a18b5
   - enabled: 1
     path: Assets/Scenes/Indiejam/GAMEOVER.unity
     guid: 302acfd40d4fffc41a566e45824395ba
