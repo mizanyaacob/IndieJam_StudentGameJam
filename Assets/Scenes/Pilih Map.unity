@@ -556,16 +556,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 485567655}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 485567660}
+        m_TargetAssemblyTypeName: OpenScene, Assembly-CSharp
+        m_MethodName: GoToScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Main Menu
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &201268147
@@ -1247,7 +1247,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Main Menu
+          m_StringArgument: GAMEPLAY
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &701478376
@@ -1270,7 +1270,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 46e6f81b3d9395d4d9360d65cb033152, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ffa4edd0c8a71434da5e234572512929, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1461,7 +1461,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1645133452}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 485567660}
+        m_TargetAssemblyTypeName: OpenScene, Assembly-CSharp
+        m_MethodName: GoToScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: GAMEPLAY 2
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1645133452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1482,7 +1494,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9505830a28f949b4bbe3b8421cfd356e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1910702f36739384aaa830dc94f8f96c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
