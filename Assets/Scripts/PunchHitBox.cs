@@ -7,49 +7,64 @@ public class PunchHitbox : MonoBehaviour
     [SerializeField] private float knockbackDuration = 0.2f;
     [SerializeField] private bool useUpwardKnockback = true;
     [SerializeField] private float upwardForce = 1f;
+    [SerializeField] private float currentKnockbackForce;
+
+    // New serialized field for food scaling
+    [SerializeField] private float forcePerFood = 1f; // Additional force per food consumed
+
+    private AudioManager audioManager; // Reference to AudioManager script
 
     public GameObject hitPrefabs;
 
     private bool isHitboxActive = false;
 
     private ThirdPersonController playerController;
+    private PlayerFoodConsumer playerFoodConsumer; // Reference to food consumer
+
+    private void Start()
+    {
+        audioManager = FindAnyObjectByType<AudioManager>();
+        playerFoodConsumer = GetComponentInParent<PlayerFoodConsumer>(); // Get reference to food consumer
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Uncommented the check to make sure we only apply knockback when the hitbox is active
         if (!isHitboxActive) return;
 
-        // Make sure we're hitting another player, not ourselves
         if (other.CompareTag("Player") && other.gameObject != transform.root.gameObject)
         {
             if (other.TryGetComponent(out KnockbackReceiver receiver))
             {
-                // Calculate direction from punch origin to the target's center
                 Vector3 direction = (other.transform.position - transform.position).normalized;
-
-                // Ensure horizontal direction is dominant
                 direction.y = 0;
                 direction.Normalize();
 
-                // Add upward component if enabled
                 if (useUpwardKnockback)
                 {
                     direction.y = upwardForce;
                 }
 
-                if(hitPrefabs != null)
+                if (hitPrefabs != null)
                 {
-
                     Instantiate(
                         hitPrefabs,
                         transform.position,
                         Quaternion.identity
                     );
                 }
+
+                // Calculate food-modified knockback force
+                currentKnockbackForce = knockbackForce;
+                if (playerFoodConsumer != null)
+                {
+                    currentKnockbackForce += playerFoodConsumer.GetFoodConsumed() * forcePerFood;
+                }
+
                 playerController = other.GetComponent<ThirdPersonController>();
                 playerController.IsKnockback = true;
-                // Apply knockback
-                receiver.ApplyKnockback(direction, knockbackForce, knockbackDuration, true);
+
+                // Apply modified force
+                receiver.ApplyKnockback(direction, currentKnockbackForce, knockbackDuration, true);
             }
         }
     }
@@ -57,11 +72,17 @@ public class PunchHitbox : MonoBehaviour
     // Call these via animation events
     public void StartPunch()
     {
+        audioManager.PlaySFX(audioManager.Punch);
         isHitboxActive = true;
     }
 
     public void EndPunch()
     {
         isHitboxActive = false;
+    }
+
+    public void resetPunchForce()
+    {
+        currentKnockbackForce = 5f;
     }
 }

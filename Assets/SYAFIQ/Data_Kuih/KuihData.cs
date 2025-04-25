@@ -29,9 +29,12 @@ public class KuihProperties : MonoBehaviour
     private GameObject badFoodEffectInstance;
     public KuihState CurrentState => currentState;
 
+    private AudioManager audioManager;
+
     private void Awake()
     {
         impulseTrigger = FindAnyObjectByType<ImpulseTrigger>();
+        audioManager = FindAnyObjectByType<AudioManager>();
     }
     void Start()
     {
@@ -97,6 +100,7 @@ public class KuihProperties : MonoBehaviour
         // Instantiate(explosionEffect, transform.position, Quaternion.identity);
         impulseTrigger.TriggerImpulse();
         Destroy(badFoodEffectInstance);
+        audioManager.PlaySFX(audioManager.Explosion);
         Instantiate(explosionEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

@@ -27,6 +27,8 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private List<Sprite> emoteSprites;
     [SerializeField] private float emoteDuration = 3f; // Duration for each emote
     [SerializeField] private CanvasGroup emoteCanvasGroup; // Optional canvas group for fading in/out
+    [SerializeField] private GameObject playerMarker; // Optional player marker for emote position
+
     private float emoteFloatSpeed = 1f;
     private float emoteFloatHeight = 0.1f;
     [Header("Emote Display")]
@@ -59,6 +61,7 @@ public class PlayerCombat : MonoBehaviour
     private CharacterController characterController;
 
     private PlayerFoodConsumer playerFoodConsumer;
+    private AudioManager audioManager; // Reference to AudioManager script
 
     private void Awake()
     {
@@ -73,6 +76,9 @@ public class PlayerCombat : MonoBehaviour
         playerFoodConsumer = GetComponent<PlayerFoodConsumer>();
 
         emotePlaceHoder.enabled = false; // Hide emote initially
+
+        playerMarker.SetActive(true); // Hide player marker initially
+        audioManager = FindAnyObjectByType<AudioManager>();
     }
 
     public void OnAttack()
@@ -90,6 +96,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (Time.time - lastDashTime < dashCooldown || isDashing) return;
 
+        audioManager.PlaySFX(audioManager.Dash);
         lastDashTime = Time.time;
         dashStartTime = Time.time;
 
@@ -130,6 +137,7 @@ public class PlayerCombat : MonoBehaviour
 
         if (isEmoteShowing)
         {
+            
             float elapsed = Time.time - emoteDisplayStartTime;
 
             // === Float up/down ===
@@ -169,6 +177,8 @@ public class PlayerCombat : MonoBehaviour
                     emoteCanvasGroup.alpha = 0f;
             }
         }
+
+        playerMarker.SetActive(!isEmoteShowing); // Show/hide player marker based on emote visibility
 
     }
 

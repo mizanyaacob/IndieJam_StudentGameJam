@@ -19,6 +19,7 @@ public class KnockbackReceiver : MonoBehaviour
     [Header("Dizzy Effect")]
     [SerializeField] private GameObject dizzyEffect;
     [SerializeField] private Transform dizzyEffectSpawnPoint; // Spawn point for the dizzy effect
+    public PunchHitbox[] punchHitboxes;
     GameObject dizzyEffectInstance;
     private float dizzyTimeRemaining = 0f;
     private bool isDizzy = false;
@@ -27,7 +28,12 @@ public class KnockbackReceiver : MonoBehaviour
     [SerializeField] private float dizzyThresholdMultiplierWhenHoldingFirecracker = 0.5f; // 50% fewer hits needed
 
 
+    [SerializeField] private GameObject PlayerMarker;
+
+
     private PlayerPickup playerPickup; // Reference to PlayerPickup script
+
+    private AudioManager audioManager; // Reference to AudioManager script
 
     //public GameObject hitEffectPrefab; // Prefab to instantiate on hit
 
@@ -37,6 +43,9 @@ public class KnockbackReceiver : MonoBehaviour
         playerController = GetComponent<ThirdPersonController>();
         animator = GetComponent<Animator>();
         playerPickup = GetComponent<PlayerPickup>(); // Initialize PlayerPickup reference
+
+        audioManager = FindAnyObjectByType<AudioManager>();
+
     }
 
     // In KnockbackReceiver.cs
@@ -44,6 +53,7 @@ public class KnockbackReceiver : MonoBehaviour
     {
         if (isDizzy) return; // Ignore knockback if dizzy
 
+        audioManager.PlaySFX(audioManager.GetHit);
         knockbackVelocity = direction * force;
         knockbackTimeRemaining = duration;
 
@@ -71,20 +81,27 @@ public class KnockbackReceiver : MonoBehaviour
         }
     }
 
-
+    
     private void TriggerDizzyState(bool resetDuration = true)
     {
         isDizzy = true;
 
+        // Reset force for all punch hitboxes
+        foreach (PunchHitbox punchHitbox in punchHitboxes)
+        {
+            punchHitbox.resetPunchForce();
+        }
+
+        audioManager.PlaySFX(audioManager.Stun);
         if (resetDuration)
             dizzyTimeRemaining = dizzyDuration;
 
+        // Rest of the original method remains the same...
         if (animator != null)
         {
             animator.SetBool(dizzyAnimationBool, true);
         }
 
-        // 🌀 Instantiate the dizzy effect if not already present
         if (dizzyEffectInstance == null && dizzyEffect != null && dizzyEffectSpawnPoint != null)
         {
             dizzyEffectInstance = Instantiate(dizzyEffect, dizzyEffectSpawnPoint.position, Quaternion.identity, dizzyEffectSpawnPoint);
@@ -92,7 +109,6 @@ public class KnockbackReceiver : MonoBehaviour
 
         Debug.Log($"Player is dizzy! Hit count: {hitCount}");
 
-        // 💥 Drop firecracker
         if (playerPickup != null && playerPickup.IsHoldingFirecracker())
         {
             playerPickup.DropFirecracker();
@@ -150,6 +166,8 @@ public class KnockbackReceiver : MonoBehaviour
                 Debug.Log("Player recovered from dizzy state");
             }
         }
+
+        PlayerMarker.SetActive(!isDizzy); // Show player marker when dizzy
     }
 
 
