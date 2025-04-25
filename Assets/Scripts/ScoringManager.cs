@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using static PlayerScoreData;
 
 
 public class ScoringManager : MonoBehaviour
@@ -139,7 +140,16 @@ public class ScoringManager : MonoBehaviour
     {
         Debug.Log("Time's up! Game Over.");
         audioManager.PlaySFX(audioManager.GameEnd);
-        SceneManager.LoadScene("GAMEOVER"); // Make sure you add this scene to your Build Settings
+
+        GameData.PlayerScores.Clear(); // Clear old data if any
+
+        GameData.PlayerScores.Add(new PlayerScoreData("Player 1", P1Score));
+        GameData.PlayerScores.Add(new PlayerScoreData("Player 2", P2Score));
+        GameData.PlayerScores.Add(new PlayerScoreData("Player 3", P3Score));
+        GameData.PlayerScores.Add(new PlayerScoreData("Player 4", P4Score));
+
+        SceneManager.LoadScene("GAMEOVER");
     }
+
 
 }
