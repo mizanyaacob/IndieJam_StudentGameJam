@@ -944,6 +944,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97201577}
   m_CullTransparentMesh: 1
+--- !u!114 &97586921 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5852748014791749492, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+  m_PrefabInstance: {fileID: 2172652714624885537}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &113601357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1717,6 +1728,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 237143031}
     - target: {fileID: 4792121695305962550, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: emotePlaceholder
+      value: 
+      objectReference: {fileID: 237143030}
+    - target: {fileID: 4792121695305962550, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
       propertyPath: leftFistHitboxObject
       value: 
       objectReference: {fileID: 237143033}
@@ -2029,6 +2044,10 @@ PrefabInstance:
       propertyPath: m_Avatar
       value: 
       objectReference: {fileID: 9000000, guid: 15ca6d12c9684cf4e9ddaf765025f563, type: 3}
+    - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: emotePlaceholder
+      value: 
+      objectReference: {fileID: 1688136250}
     - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
       propertyPath: leftFistHitboxObject
       value: 
@@ -3551,10 +3570,10 @@ MonoBehaviour:
   Eat3sec: {fileID: 8300000, guid: 0b6b2e21dfdae95499503f9fbfa83626, type: 3}
   Countdown: {fileID: 8300000, guid: 99367d8b65d694f408452e0eb24587f1, type: 3}
   CameraCapture: {fileID: 8300000, guid: 49b1a727af253794d98c9244fa0c6072, type: 3}
-  EmoteSad: {fileID: 0}
-  EmoteHappy: {fileID: 0}
-  EmoteAngry: {fileID: 0}
-  EmoteWow: {fileID: 0}
+  EmoteSad: {fileID: 8300000, guid: a532934fff9983045bcf04a6e19ceb8c, type: 3}
+  EmoteHappy: {fileID: 8300000, guid: de1f47b5dd9d8c946b9f7c9d636f6f19, type: 3}
+  EmoteAngry: {fileID: 8300000, guid: 4e5c67664639e2d47aa6ce61ec8adab8, type: 3}
+  EmoteWow: {fileID: 8300000, guid: f3752fd5e8e131c46a9ba2e8241dced6, type: 3}
 --- !u!1001 &466822446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5597,6 +5616,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 582abf97ecb4a1d4c8e99e763a493630, type: 3}
+--- !u!114 &959118178 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6883585186354906951, guid: 417727110de746246aea699ce529996d, type: 3}
+  m_PrefabInstance: {fileID: 1196641365867501599}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &966099973
 GameObject:
   m_ObjectHideFlags: 0
@@ -5747,13 +5777,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4042e24799430d44ea91c5f297f91f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeBetweenEvents: 30
-  maxTimeBetweenEvents: 45
+  minTimeBetweenEvents: 10
+  maxTimeBetweenEvents: 10
   announcementUI: {fileID: 1271609146}
   angryMakcikPrefab: {fileID: 7952171475692775886, guid: 9badb87d841b1634fb1cd660ce7b6bfb, type: 3}
   MakcikSpawnPooint: {fileID: 342925134}
   lighting: {fileID: 2056794352}
-  firecrackerPrefab: {fileID: 7952171475692775886, guid: 9badb87d841b1634fb1cd660ce7b6bfb, type: 3}
+  firecrackerPrefab: {fileID: 2944548974626006965, guid: edf1295eb72053147812b1787b122d1c, type: 3}
   photographerPrefab: {fileID: 2950823558616240176, guid: 8a3ac489d7e712a4ead706b895960ffc, type: 3}
   spawnRadius: 10
   gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
@@ -9501,6 +9531,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2479553377688389356, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
   m_PrefabInstance: {fileID: 237143026}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1688136250 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5852748014791749492, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+  m_PrefabInstance: {fileID: 292501617}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1733657646 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8642225304373351647, guid: 50a0925b0c22af146a2d15615f815a1c, type: 3}
@@ -10514,7 +10555,7 @@ MonoBehaviour:
   - {fileID: 1565579790}
   - {fileID: 115626443}
   - {fileID: 417378833}
-  timerDuration: 20
+  timerDuration: 60
   timerText: {fileID: 308233176}
 --- !u!1001 &1925713801
 PrefabInstance:
@@ -11889,6 +11930,10 @@ PrefabInstance:
       value: P2
       objectReference: {fileID: 0}
     - target: {fileID: 8175829478068061686, guid: 417727110de746246aea699ce529996d, type: 3}
+      propertyPath: emotePlaceholder
+      value: 
+      objectReference: {fileID: 959118178}
+    - target: {fileID: 8175829478068061686, guid: 417727110de746246aea699ce529996d, type: 3}
       propertyPath: leftFistHitboxObject
       value: 
       objectReference: {fileID: 771720701}
@@ -11961,6 +12006,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1191231911}
+    - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: emotePlaceholder
+      value: 
+      objectReference: {fileID: 97586921}
     - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
       propertyPath: emoteSprites.Array.size
       value: 4

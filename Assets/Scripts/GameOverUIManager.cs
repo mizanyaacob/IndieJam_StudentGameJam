@@ -1,11 +1,21 @@
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class GameOverUIManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text[] scoreTexts;
+    [SerializeField] private GameObject[] crowns; // Array of crown GameObjects (1 per player)
 
+    private void Awake()
+    {
+        // Ensure all crowns are inactive at the start
+        foreach (var crown in crowns)
+        {
+            crown.SetActive(false);
+        }
+    }
     private void Start()
     {
         // Set the score texts
@@ -18,17 +28,21 @@ public class GameOverUIManager : MonoBehaviour
         var scores = GameData.PlayerScores.Select(player => player.score).ToList();
         var sortedScores = scores.OrderByDescending(score => score).ToList();
 
-        // Assign animation ranks
-        for (int i = 0; i < GameData.PlayerScores.Count && i < scoreTexts.Length; i++)
-        {
-            int currentScore = GameData.PlayerScores[i].score;
-            int rank = sortedScores.IndexOf(currentScore) + 1; // Add 1 for 1-based ranking
+        // Find the highest score (rank 1)
+        int highestScore = sortedScores[0];
 
-            // Get the Animator from the parent of the scoreText and set the rank
+        // Activate crown only for the player(s) with the highest score
+        for (int i = 0; i < GameData.PlayerScores.Count && i < crowns.Length; i++)
+        {
+            // Check if this player has the highest score
+            bool isWinner = (GameData.PlayerScores[i].score == highestScore);
+            crowns[i].SetActive(isWinner); // Enable crown if winner
+
+            // Optional: Set animation rank (if needed)
             Animator animator = scoreTexts[i].GetComponentInParent<Animator>();
             if (animator != null)
             {
-                animator.SetInteger("Anim", rank);
+                animator.SetInteger("Anim", isWinner ? 1 : 2); // 1 for winner, 2+ for others
             }
         }
     }
