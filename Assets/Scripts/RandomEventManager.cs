@@ -42,7 +42,7 @@ public class RandomEventManager : MonoBehaviour
         eventList.Add(AngryAuntyEvent);
         //eventList.Add(KuihRainEvent);
         //eventList.Add(SlipperyGroundEvent);
-        //eventList.Add(BlackoutEvent); // 🆕 Blackout
+        eventList.Add(BlackoutEvent); // 🆕 Blackout
         //eventList.Add(TakingPictureEvent); // 🆕 Taking Picture
         ScheduleNextEvent();
     }
@@ -169,10 +169,14 @@ public class RandomEventManager : MonoBehaviour
         if (lighting != null)
         {
             lighting.SetActive(true);
-            RemoveFirecrackersIfNeeded(); // Remove firecrackers after blackout
             Debug.Log("Lighting restored after blackout.");
         }
+
+        RemoveFirecrackers(); // ✅ Always remove firecrackers after blackout
+
+        CurrentEvent = EventType.None; // ✅ Reset event after cleanup
     }
+
 
     private void TakingPictureEvent()
     {
@@ -197,23 +201,17 @@ public class RandomEventManager : MonoBehaviour
     }
 
 
-    private void RemoveFirecrackersIfNeeded()
+    private void RemoveFirecrackers()
     {
-        if (CurrentEvent != EventType.Blackout)
+        Firecracker[] firecrackers = FindObjectsOfType<Firecracker>();
+        foreach (Firecracker firecracker in firecrackers)
         {
-            Firecracker[] firecrackers = FindObjectsOfType<Firecracker>();
-            foreach (Firecracker firecracker in firecrackers)
-            {
-                Destroy(firecracker.gameObject);
-            }
+            Destroy(firecracker.gameObject);
+        }
 
-            Debug.Log("🔥 Firecrackers destroyed because the event is not blackout.");
-        }
-        else
-        {
-            Debug.Log("🕶️ Firecrackers remain because it's a blackout event.");
-        }
+        Debug.Log("🔥 Firecrackers destroyed after blackout ended.");
     }
+
 
     [SerializeField] private float spawnRadius = 10f;
     [SerializeField] private Color gizmoColor = new Color(1f, 0f, 0f, 0.3f); // translucent red

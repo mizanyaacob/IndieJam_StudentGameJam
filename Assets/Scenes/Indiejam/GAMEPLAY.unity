@@ -1604,6 +1604,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1193180883}
     m_Modifications:
+    - target: {fileID: 4674352715987043165, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 78006055191788540, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
       propertyPath: m_Size.x
       value: 0.00015
@@ -1807,10 +1811,6 @@ PrefabInstance:
     - target: {fileID: 8615979566788382500, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
       propertyPath: m_IsTrigger
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4674352715987043165, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -3551,6 +3551,10 @@ MonoBehaviour:
   Eat3sec: {fileID: 8300000, guid: 0b6b2e21dfdae95499503f9fbfa83626, type: 3}
   Countdown: {fileID: 8300000, guid: 99367d8b65d694f408452e0eb24587f1, type: 3}
   CameraCapture: {fileID: 8300000, guid: 49b1a727af253794d98c9244fa0c6072, type: 3}
+  EmoteSad: {fileID: 0}
+  EmoteHappy: {fileID: 0}
+  EmoteAngry: {fileID: 0}
+  EmoteWow: {fileID: 0}
 --- !u!1001 &466822446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10510,7 +10514,7 @@ MonoBehaviour:
   - {fileID: 1565579790}
   - {fileID: 115626443}
   - {fileID: 417378833}
-  timerDuration: 120
+  timerDuration: 20
   timerText: {fileID: 308233176}
 --- !u!1001 &1925713801
 PrefabInstance:
