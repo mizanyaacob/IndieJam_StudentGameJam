@@ -1615,10 +1615,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1193180883}
     m_Modifications:
-    - target: {fileID: 4674352715987043165, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 78006055191788540, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
       propertyPath: m_Size.x
       value: 0.00015
@@ -1826,6 +1822,10 @@ PrefabInstance:
     - target: {fileID: 8615979566788382500, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674352715987043165, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -5777,8 +5777,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4042e24799430d44ea91c5f297f91f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTimeBetweenEvents: 10
-  maxTimeBetweenEvents: 10
+  minTimeBetweenEvents: 30
+  maxTimeBetweenEvents: 45
   announcementUI: {fileID: 1271609146}
   angryMakcikPrefab: {fileID: 7952171475692775886, guid: 9badb87d841b1634fb1cd660ce7b6bfb, type: 3}
   MakcikSpawnPooint: {fileID: 342925134}
@@ -7278,7 +7278,7 @@ MonoBehaviour:
   announcementTransform: {fileID: 338107088}
   announcementText: {fileID: 1785622543}
   backgroundImage: {fileID: 338107089}
-  moveSpeed: 1000
+  moveSpeed: 800
   stopDuration: 0
 --- !u!1001 &1274892634
 PrefabInstance:
@@ -10555,7 +10555,7 @@ MonoBehaviour:
   - {fileID: 1565579790}
   - {fileID: 115626443}
   - {fileID: 417378833}
-  timerDuration: 60
+  timerDuration: 150
   timerText: {fileID: 308233176}
 --- !u!1001 &1925713801
 PrefabInstance:

@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: d1f7ff3117c64f64593eae2a72ba527d, type: 2}
+  m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
 --- !u!1001 &62690401
 PrefabInstance:
@@ -2899,6 +2899,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 237143031}
     - target: {fileID: 4792121695305962550, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: emotePlaceholder
+      value: 
+      objectReference: {fileID: 237143030}
+    - target: {fileID: 4792121695305962550, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
       propertyPath: leftFistHitboxObject
       value: 
       objectReference: {fileID: 237143033}
@@ -3557,6 +3561,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3, y: 0.099999994}
   m_EdgeRadius: 0
+--- !u!114 &280535825 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6883585186354906951, guid: 417727110de746246aea699ce529996d, type: 3}
+  m_PrefabInstance: {fileID: 1196641365867501599}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &284441462 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3248315488105561783, guid: 687dbafc2b84b2846b9a4a7a7dae2a7e, type: 3}
@@ -3823,6 +3838,10 @@ PrefabInstance:
       propertyPath: m_Avatar
       value: 
       objectReference: {fileID: 9000000, guid: 15ca6d12c9684cf4e9ddaf765025f563, type: 3}
+    - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: emotePlaceholder
+      value: 
+      objectReference: {fileID: 2072258338}
     - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
       propertyPath: leftFistHitboxObject
       value: 
@@ -6147,7 +6166,7 @@ MonoBehaviour:
   sceneMusicList:
   - sceneName: TIMER
     musicClip: {fileID: 8300000, guid: ec79a6fe7348c9b42bf998aabacb65f6, type: 3}
-  - sceneName: BlockoutSyafiq
+  - sceneName: GAMEPLAY 2
     musicClip: {fileID: 8300000, guid: a496825aea510114cb4de9eed9a8ce17, type: 3}
   Hover: {fileID: 8300000, guid: 88994cd0bf14a86449f6f70d736be247, type: 3}
   Click: {fileID: 0}
@@ -6163,6 +6182,10 @@ MonoBehaviour:
   Eat3sec: {fileID: 8300000, guid: 0b6b2e21dfdae95499503f9fbfa83626, type: 3}
   Countdown: {fileID: 8300000, guid: 99367d8b65d694f408452e0eb24587f1, type: 3}
   CameraCapture: {fileID: 8300000, guid: 49b1a727af253794d98c9244fa0c6072, type: 3}
+  EmoteSad: {fileID: 8300000, guid: a532934fff9983045bcf04a6e19ceb8c, type: 3}
+  EmoteHappy: {fileID: 8300000, guid: de1f47b5dd9d8c946b9f7c9d636f6f19, type: 3}
+  EmoteAngry: {fileID: 8300000, guid: 4e5c67664639e2d47aa6ce61ec8adab8, type: 3}
+  EmoteWow: {fileID: 8300000, guid: f3752fd5e8e131c46a9ba2e8241dced6, type: 3}
 --- !u!1001 &466822446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13590,6 +13613,17 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 0ece1de7dd76e5742a2d23acc9ac49b6, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &1212781799 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5852748014791749492, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+  m_PrefabInstance: {fileID: 2172652714624885537}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1212983816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14680,7 +14714,7 @@ MonoBehaviour:
   announcementTransform: {fileID: 338107088}
   announcementText: {fileID: 1785622543}
   backgroundImage: {fileID: 338107089}
-  moveSpeed: 1000
+  moveSpeed: 800
   stopDuration: 0
 --- !u!1001 &1274892634
 PrefabInstance:
@@ -20762,7 +20796,7 @@ MonoBehaviour:
   - {fileID: 1565579790}
   - {fileID: 115626443}
   - {fileID: 417378833}
-  timerDuration: 120
+  timerDuration: 150
   timerText: {fileID: 308233176}
 --- !u!1 &1902438792 stripped
 GameObject:
@@ -22632,6 +22666,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8857496041097200486, guid: 3eee8ed9c9081f149a546a3b2145157f, type: 3}
   m_PrefabInstance: {fileID: 58334367}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2072258338 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5852748014791749492, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+  m_PrefabInstance: {fileID: 292501617}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2074268820
 GameObject:
   m_ObjectHideFlags: 0
@@ -23988,6 +24033,10 @@ PrefabInstance:
       value: P2
       objectReference: {fileID: 0}
     - target: {fileID: 8175829478068061686, guid: 417727110de746246aea699ce529996d, type: 3}
+      propertyPath: emotePlaceholder
+      value: 
+      objectReference: {fileID: 280535825}
+    - target: {fileID: 8175829478068061686, guid: 417727110de746246aea699ce529996d, type: 3}
       propertyPath: leftFistHitboxObject
       value: 
       objectReference: {fileID: 771720701}
@@ -24060,6 +24109,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1191231911}
+    - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: emotePlaceholder
+      value: 
+      objectReference: {fileID: 1212781799}
     - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
       propertyPath: emoteSprites.Array.size
       value: 4

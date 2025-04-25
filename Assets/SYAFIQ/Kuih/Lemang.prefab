@@ -152,9 +152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kuihName: Kuih 7
-  scoreValue: 1
-  consumeTime: 0.5
-  goodDuration: 5
+  scoreValue: 10
+  consumeTime: 1.5
+  goodDuration: 7
   badDuration: 5
   explosionRadius: 3
   explosionForce: 5

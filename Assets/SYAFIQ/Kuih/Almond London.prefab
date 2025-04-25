@@ -151,9 +151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kuihName: Almond London
-  scoreValue: 1
-  consumeTime: 0.2
-  goodDuration: 5
+  scoreValue: 2
+  consumeTime: 0.3
+  goodDuration: 7
   badDuration: 5
   explosionRadius: 3
   explosionForce: 5

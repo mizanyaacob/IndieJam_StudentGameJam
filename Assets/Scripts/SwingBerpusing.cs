@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SwingBerpusing : MonoBehaviour
 {
-    public float rotationSpeed = 50f; // degrees per second
+    public float rotationSpeed = 50f;
 
     // Update is called once per frame
     void Update()
