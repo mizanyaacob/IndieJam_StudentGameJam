@@ -344,7 +344,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 37868363}
-  - {fileID: 1333297474}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &60775334 stripped
@@ -3996,6 +3995,8 @@ MonoBehaviour:
   knockbackDuration: 0.5
   useUpwardKnockback: 1
   upwardForce: 1
+  currentKnockbackForce: 0
+  forcePerFood: 1
   hitPrefabs: {fileID: 0}
 --- !u!1001 &1276837674
 PrefabInstance:
@@ -4233,8 +4234,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333297473}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.4, y: -1, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4242,7 +4243,7 @@ Transform:
   - {fileID: 911765830}
   - {fileID: 31573631}
   - {fileID: 800590302}
-  m_Father: {fileID: 59490230}
+  m_Father: {fileID: 1647734696}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1336270483
 PrefabInstance:
@@ -5331,6 +5332,7 @@ Transform:
   - {fileID: 1211020549}
   - {fileID: 650436957}
   - {fileID: 684749763}
+  - {fileID: 1333297474}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1737231790 stripped
@@ -5844,6 +5846,7 @@ MonoBehaviour:
   dizzyDuration: 3
   dizzyEffect: {fileID: 0}
   dizzyEffectSpawnPoint: {fileID: 0}
+  punchHitboxes: []
   dizzyThresholdMultiplierWhenHoldingFirecracker: 0.5
   PlayerMarker: {fileID: 0}
 --- !u!143 &1943156881
