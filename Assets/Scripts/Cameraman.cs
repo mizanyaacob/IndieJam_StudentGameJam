@@ -111,4 +111,32 @@ public class Cameraman : MonoBehaviour
         yield return new WaitForSeconds(stayDuration);
         Destroy(gameObject);
     }
+
+    void OnDrawGizmosSelected()
+    {
+        if (!Application.isPlaying) return;
+
+        Gizmos.color = new Color(1f, 1f, 0f, 0.25f); // Yellowish cone
+
+        Vector3 origin = transform.position;
+        Vector3 forward = transform.forward;
+
+        // Draw the vision cone using rays
+        int segments = 30;
+        float angleStep = coneAngle / segments;
+
+        for (int i = -segments; i <= segments; i++)
+        {
+            float currentAngle = angleStep * i;
+            Quaternion rot = Quaternion.AngleAxis(currentAngle, Vector3.up);
+            Vector3 dir = rot * forward;
+
+            Gizmos.DrawRay(origin, dir.normalized * photoRange);
+        }
+
+        // Optionally draw a wire arc as base of the cone
+        UnityEditor.Handles.color = new Color(1f, 1f, 0f, 0.5f);
+        UnityEditor.Handles.DrawSolidArc(origin, Vector3.up, Quaternion.Euler(0, -coneAngle, 0) * forward, 2 * coneAngle, photoRange);
+    }
+
 }
