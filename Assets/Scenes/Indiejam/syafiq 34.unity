@@ -861,7 +861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &113601358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1088,6 +1088,10 @@ PrefabInstance:
     - target: {fileID: 2950823558616240176, guid: 8a3ac489d7e712a4ead706b895960ffc, type: 3}
       propertyPath: m_Name
       value: Photographer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2950823558616240176, guid: 8a3ac489d7e712a4ead706b895960ffc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1324943451641890667, guid: 8a3ac489d7e712a4ead706b895960ffc, type: 3}
@@ -5849,7 +5853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &858267800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6439,7 +6443,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &966099974
 Transform:
   m_ObjectHideFlags: 0
@@ -6512,9 +6516,12 @@ MonoBehaviour:
   maxTimeBetweenEvents: 30
   announcementUI: {fileID: 1271609146}
   angryMakcikPrefab: {fileID: 8996552112101760404, guid: 334c112e5f7070c43b27eec223429d54, type: 3}
+  MakcikSpawnPooint: {fileID: 0}
   lighting: {fileID: 2056794352}
   firecrackerPrefab: {fileID: 2944548974626006965, guid: edf1295eb72053147812b1787b122d1c, type: 3}
   photographerPrefab: {fileID: 2950823558616240176, guid: 8a3ac489d7e712a4ead706b895960ffc, type: 3}
+  spawnRadius: 10
+  gizmoColor: {r: 1, g: 0, b: 0, a: 0.3}
 --- !u!4 &979533949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cd99125fee25a447f946fdcc04cd3bb7, type: 3}
@@ -7909,7 +7916,7 @@ Transform:
   m_GameObject: {fileID: 1178751833}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.9884832, y: 1.3749962, z: 4.3253374}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8111,7 +8118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1193180883
 Transform:
   m_ObjectHideFlags: 0
@@ -8638,6 +8645,8 @@ MonoBehaviour:
   knockbackDuration: 0.5
   useUpwardKnockback: 1
   upwardForce: 1
+  currentKnockbackForce: 0
+  forcePerFood: 1
   hitPrefabs: {fileID: 0}
 --- !u!1001 &1279253874
 PrefabInstance:
@@ -9096,6 +9105,10 @@ PrefabInstance:
     - target: {fileID: 8345070699079395523, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345070700224654063, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8379900264220769560, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14426,7 +14439,11 @@ MonoBehaviour:
   hitsUntilDizzy: 10
   dizzyAnimationBool: IsDizzy
   dizzyDuration: 3
+  dizzyEffect: {fileID: 0}
+  dizzyEffectSpawnPoint: {fileID: 0}
+  punchHitboxes: []
   dizzyThresholdMultiplierWhenHoldingFirecracker: 0.5
+  PlayerMarker: {fileID: 0}
 --- !u!143 &1943156881
 CharacterController:
   m_ObjectHideFlags: 0
