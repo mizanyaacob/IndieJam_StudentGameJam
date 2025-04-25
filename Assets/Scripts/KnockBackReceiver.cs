@@ -27,6 +27,9 @@ public class KnockbackReceiver : MonoBehaviour
     [SerializeField] private float dizzyThresholdMultiplierWhenHoldingFirecracker = 0.5f; // 50% fewer hits needed
 
 
+    [SerializeField] private GameObject PlayerMarker;
+
+
     private PlayerPickup playerPickup; // Reference to PlayerPickup script
 
     //public GameObject hitEffectPrefab; // Prefab to instantiate on hit
@@ -37,6 +40,7 @@ public class KnockbackReceiver : MonoBehaviour
         playerController = GetComponent<ThirdPersonController>();
         animator = GetComponent<Animator>();
         playerPickup = GetComponent<PlayerPickup>(); // Initialize PlayerPickup reference
+
     }
 
     // In KnockbackReceiver.cs
@@ -150,6 +154,8 @@ public class KnockbackReceiver : MonoBehaviour
                 Debug.Log("Player recovered from dizzy state");
             }
         }
+
+        PlayerMarker.SetActive(!isDizzy); // Show player marker when dizzy
     }
 
 

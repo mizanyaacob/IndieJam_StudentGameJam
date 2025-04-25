@@ -380,6 +380,11 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: d1f7ff3117c64f64593eae2a72ba527d, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1 &92696128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7173575121277552858, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+  m_PrefabInstance: {fileID: 2172652714624885537}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &113601357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,6 +1417,17 @@ Transform:
   - {fileID: 1009660121}
   m_Father: {fileID: 59490230}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &588323731 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4221147777733773421, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+  m_PrefabInstance: {fileID: 8236510554146361643}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &645972675 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2080362128112339778, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
@@ -1716,7 +1732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &858267800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3272,6 +3288,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6404437290129217411, guid: dc22cd462c3a8144086320dea7df9173, type: 3}
   m_PrefabInstance: {fileID: 8022519655468243704}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1331645855 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7759040890099384398, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+  m_PrefabInstance: {fileID: 2172652714624885537}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1333297473
 GameObject:
   m_ObjectHideFlags: 0
@@ -4747,6 +4768,7 @@ MonoBehaviour:
   dizzyEffect: {fileID: 0}
   dizzyEffectSpawnPoint: {fileID: 0}
   dizzyThresholdMultiplierWhenHoldingFirecracker: 0.5
+  PlayerMarker: {fileID: 0}
 --- !u!143 &1943156881
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5263,6 +5285,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: playerMarker
+      value: 
+      objectReference: {fileID: 92696128}
+    - target: {fileID: 3280835180552103722, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
       propertyPath: emoteCooldown
       value: 3
       objectReference: {fileID: 0}
@@ -5366,6 +5392,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4683110128131724113, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5286792917131233513, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
       propertyPath: m_Radius
       value: 0.35
@@ -5386,10 +5416,34 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5733034566107731488, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5828456889210317583, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
       propertyPath: m_Name
       value: P1
       objectReference: {fileID: 0}
+    - target: {fileID: 7173575121277552858, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666671095479388103, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: effectPoint
+      value: 
+      objectReference: {fileID: 1331645855}
+    - target: {fileID: 7666671095479388103, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: PlayerMarker
+      value: 
+      objectReference: {fileID: 92696128}
+    - target: {fileID: 7666671095479388103, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: invertedEffect
+      value: 
+      objectReference: {fileID: 1524533970525000399, guid: 1133dff0b5fda2e4295d301899b1582d, type: 3}
+    - target: {fileID: 8618661240061365141, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
+      propertyPath: PlayerMarker
+      value: 
+      objectReference: {fileID: 92696128}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -5573,6 +5627,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3220296098417704377, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: PlayerMarker
+      value: 
+      objectReference: {fileID: 8236510554146361644}
     - target: {fileID: 3827880987969290010, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
       propertyPath: m_Radius
       value: 0.3
@@ -5618,6 +5676,18 @@ PrefabInstance:
       value: -0.109
       objectReference: {fileID: 0}
     - target: {fileID: 4792121695305962550, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: playerMarker
+      value: 
+      objectReference: {fileID: 8236510554146361644}
+    - target: {fileID: 4792121695305962550, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: emotePlaceHoder
+      value: 
+      objectReference: {fileID: 588323731}
+    - target: {fileID: 4792121695305962550, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: emoteCanvasGroup
+      value: 
+      objectReference: {fileID: 8236510554146361645}
+    - target: {fileID: 4792121695305962550, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
       propertyPath: leftFistHitboxObject
       value: 
       objectReference: {fileID: 921045005}
@@ -5625,6 +5695,26 @@ PrefabInstance:
       propertyPath: rightFistHitboxObject
       value: 
       objectReference: {fileID: 416906467}
+    - target: {fileID: 4792121695305962550, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: emoteSprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4792121695305962550, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: 'emoteSprites.Array.data[0]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 73a0644d867766e46bd5fba657c91b49, type: 3}
+    - target: {fileID: 4792121695305962550, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: 'emoteSprites.Array.data[1]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 3a96320876d67f246b13522f6964e34d, type: 3}
+    - target: {fileID: 4792121695305962550, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: 'emoteSprites.Array.data[2]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 5fa5cafde58b2c541b2e347bb7e7cc84, type: 3}
+    - target: {fileID: 4792121695305962550, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+      propertyPath: 'emoteSprites.Array.data[3]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 2925bed5da4e1b04e9e9f4609fa58c51, type: 3}
     - target: {fileID: 6109970582145487817, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -5698,6 +5788,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+--- !u!1 &8236510554146361644 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2118636975076137467, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+  m_PrefabInstance: {fileID: 8236510554146361643}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &8236510554146361645 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 5872690530253104291, guid: 5d9c7f36a1895c9449619fdb11de8c53, type: 3}
+  m_PrefabInstance: {fileID: 8236510554146361643}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8392168308977328328 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3314741922495132413, guid: acfb3c932aea2274aa28638e0e2fd33c, type: 3}
