@@ -2222,7 +2222,7 @@ MonoBehaviour:
   maxTimeBetweenEvents: 10
   announcementUI: {fileID: 1271609146}
   angryMakcikPrefab: {fileID: 7952171475692775886, guid: 9badb87d841b1634fb1cd660ce7b6bfb, type: 3}
-  MakcikSpawnPooint: {fileID: 342925134}
+  MakcikSpawnPooint: {fileID: 0}
   lighting: {fileID: 2056794352}
   firecrackerPrefab: {fileID: 7952171475692775886, guid: 9badb87d841b1634fb1cd660ce7b6bfb, type: 3}
   photographerPrefab: {fileID: 2950823558616240176, guid: 8a3ac489d7e712a4ead706b895960ffc, type: 3}
@@ -4711,8 +4711,8 @@ MonoBehaviour:
   - {fileID: 2082057500}
   - {fileID: 320399627}
   - {fileID: 260186177}
-  timerDuration: 15
-  timerText: {fileID: 308233176}
+  timerDuration: 120
+  timerText: {fileID: 0}
 --- !u!1 &1943156879
 GameObject:
   m_ObjectHideFlags: 0
