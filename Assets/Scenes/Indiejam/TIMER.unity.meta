@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Indiejam/TIMER.unity.meta
 guid: 6f977bae68c1dc2418f4559996159ce7
+========
+guid: 1d4fbda6643700f4785f7e81f513a048
+folderAsset: yes
+>>>>>>>> origin/Faiz:Assets/UI_MainMenu.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

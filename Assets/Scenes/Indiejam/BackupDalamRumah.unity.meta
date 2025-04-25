@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Credit.unity.meta
+guid: ee1715aa97c760d45b028f98a384241c
+========
 guid: d9ab7b1f100c2f444bd41a2b23eb8114
+>>>>>>>> origin/Syarep:Assets/Scenes/Indiejam/BackupDalamRumah.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
