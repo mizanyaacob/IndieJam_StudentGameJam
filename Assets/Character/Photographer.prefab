@@ -299,7 +299,7 @@ MonoBehaviour:
   dizzyDuration: 3
   rotateSpeed: 0.5
   rotateRange: 120
-  flashEffect: {fileID: 0}
+  flashEffect: {fileID: 8525990746615576120, guid: a638c785f2688884da699c5484ca2198, type: 3}
   visionCone: {fileID: 0}
   visionMat: {fileID: 0}
   before: {fileID: 2100000, guid: 395f3eaa1fc79534b8e341b772772986, type: 2}
