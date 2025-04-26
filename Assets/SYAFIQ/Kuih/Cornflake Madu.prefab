@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kuihName: Cornflake Madu
-  scoreValue: 2
+  scoreValue: 1
   consumeTime: 0.3
   goodDuration: 7
   badDuration: 5
