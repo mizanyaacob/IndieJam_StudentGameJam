@@ -161,6 +161,7 @@ MonoBehaviour:
   knockbackDuration: 0.5
   explosionEffect: {fileID: 1247311384876784, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}
   badFoodEffect: {fileID: 8656522925564163052, guid: e509867be4f82f246a95eca1ee5a2d61, type: 3}
+  HighlightEffect: {fileID: 5137123306192418792, guid: 5a8d99fb95262ea458a7b580f2a1611c, type: 3}
 --- !u!1001 &1259872791216377454
 PrefabInstance:
   m_ObjectHideFlags: 0

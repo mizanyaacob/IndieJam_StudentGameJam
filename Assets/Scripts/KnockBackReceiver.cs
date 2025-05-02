@@ -1,5 +1,7 @@
 ﻿using StarterAssets;
 using UnityEngine;
+using UnityEngine.InputSystem; // <-- Make sure this is there
+
 
 [RequireComponent(typeof(CharacterController))]
 public class KnockbackReceiver : MonoBehaviour
@@ -35,6 +37,10 @@ public class KnockbackReceiver : MonoBehaviour
 
     private AudioManager audioManager; // Reference to AudioManager script
 
+    private Gamepad assignedGamepad;
+    private PlayerInput playerInput;
+
+
     //public GameObject hitEffectPrefab; // Prefab to instantiate on hit
 
     private void Awake()
@@ -42,11 +48,25 @@ public class KnockbackReceiver : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         playerController = GetComponent<ThirdPersonController>();
         animator = GetComponent<Animator>();
-        playerPickup = GetComponent<PlayerPickup>(); // Initialize PlayerPickup reference
-
+        playerPickup = GetComponent<PlayerPickup>();
         audioManager = FindAnyObjectByType<AudioManager>();
 
+        playerInput = GetComponent<PlayerInput>();
+
+        if (playerInput != null)
+        {
+            foreach (var device in playerInput.user.pairedDevices)
+            {
+                if (device is Gamepad gamepad)
+                {
+                    assignedGamepad = gamepad;
+                    break;
+                }
+            }
+        }
     }
+
+
 
     // In KnockbackReceiver.cs
     public void ApplyKnockback(Vector3 direction, float force, float duration, bool countAsHit = true)
@@ -54,6 +74,7 @@ public class KnockbackReceiver : MonoBehaviour
         if (isDizzy) return; // Ignore knockback if dizzy
 
         audioManager.PlaySFX(audioManager.GetHit);
+        VibrateController(0.5f, 1.0f, 0.3f); // <<< Vibration happens here!
         knockbackVelocity = direction * force;
         knockbackTimeRemaining = duration;
 
@@ -204,5 +225,24 @@ public class KnockbackReceiver : MonoBehaviour
             TriggerDizzyState();
         }
     }
+
+
+    private void VibrateController(float lowFrequency, float highFrequency, float duration)
+    {
+        if (assignedGamepad != null)
+        {
+            assignedGamepad.SetMotorSpeeds(lowFrequency, highFrequency);
+            Invoke(nameof(StopVibration), duration);
+        }
+    }
+
+    private void StopVibration()
+    {
+        if (assignedGamepad != null)
+        {
+            assignedGamepad.SetMotorSpeeds(0f, 0f);
+        }
+    }
+
 
 }

@@ -20,6 +20,7 @@ public class KuihProperties : MonoBehaviour
     public float knockbackDuration = 0.5f;
     public GameObject explosionEffect;
     public GameObject badFoodEffect;
+    public GameObject HighlightEffect; // Prefab for bad food effect
 
 
     private KuihState currentState = KuihState.Good;
@@ -40,6 +41,9 @@ public class KuihProperties : MonoBehaviour
     {
         currentState = KuihState.Good;
         stateTimer = goodDuration;
+        GameObject highlight = Instantiate(HighlightEffect, transform.position, Quaternion.identity);
+        highlight.transform.SetParent(transform);
+        highlight.transform.localEulerAngles = new Vector3(90, 0, 0);
     }
 
     void Update()
@@ -101,7 +105,12 @@ public class KuihProperties : MonoBehaviour
         impulseTrigger.TriggerImpulse();
         Destroy(badFoodEffectInstance);
         audioManager.PlaySFX(audioManager.Explosion);
-        Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        GameObject busuk = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+        busuk.transform.SetParent(transform);
+        busuk.transform.localPosition= Vector3.zero;
+        Vector3 pos = busuk.transform.position;
+        pos.y = 1f;
+        busuk.transform.position = pos;
         Destroy(gameObject);
     }
 

@@ -6,6 +6,7 @@ MonoImporter:
   defaultReferences:
   - explosionEffect: {instanceID: 0}
   - badFoodEffect: {fileID: 8656522925564163052, guid: e509867be4f82f246a95eca1ee5a2d61, type: 3}
+  - HighlightEffect: {fileID: 5137123306192418792, guid: 5a8d99fb95262ea458a7b580f2a1611c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
