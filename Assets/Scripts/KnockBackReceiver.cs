@@ -15,6 +15,12 @@ public class KnockbackReceiver : MonoBehaviour
     [SerializeField] private int hitsUntilDizzy = 10;
     [SerializeField] private string dizzyAnimationBool = "IsDizzy";
     [SerializeField] private float dizzyDuration = 3f;
+
+    [Header("Dizzy Effect")]
+    [SerializeField] private GameObject dizzyEffect;
+    [SerializeField] private Transform dizzyEffectSpawnPoint; // Spawn point for the dizzy effect
+    public PunchHitbox[] punchHitboxes;
+    GameObject dizzyEffectInstance;
     private float dizzyTimeRemaining = 0f;
     private bool isDizzy = false;
 
@@ -22,7 +28,12 @@ public class KnockbackReceiver : MonoBehaviour
     [SerializeField] private float dizzyThresholdMultiplierWhenHoldingFirecracker = 0.5f; // 50% fewer hits needed
 
 
+    [SerializeField] private GameObject PlayerMarker;
+
+
     private PlayerPickup playerPickup; // Reference to PlayerPickup script
+
+    private AudioManager audioManager; // Reference to AudioManager script
 
     //public GameObject hitEffectPrefab; // Prefab to instantiate on hit
 
@@ -32,6 +43,9 @@ public class KnockbackReceiver : MonoBehaviour
         playerController = GetComponent<ThirdPersonController>();
         animator = GetComponent<Animator>();
         playerPickup = GetComponent<PlayerPickup>(); // Initialize PlayerPickup reference
+
+        audioManager = FindAnyObjectByType<AudioManager>();
+
     }
 
     // In KnockbackReceiver.cs
@@ -39,6 +53,7 @@ public class KnockbackReceiver : MonoBehaviour
     {
         if (isDizzy) return; // Ignore knockback if dizzy
 
+        audioManager.PlaySFX(audioManager.GetHit);
         knockbackVelocity = direction * force;
         knockbackTimeRemaining = duration;
 
@@ -66,27 +81,40 @@ public class KnockbackReceiver : MonoBehaviour
         }
     }
 
-
+    
     private void TriggerDizzyState(bool resetDuration = true)
     {
         isDizzy = true;
 
+        // Reset force for all punch hitboxes
+        foreach (PunchHitbox punchHitbox in punchHitboxes)
+        {
+            punchHitbox.resetPunchForce();
+        }
+
+        audioManager.PlaySFX(audioManager.Stun);
         if (resetDuration)
             dizzyTimeRemaining = dizzyDuration;
 
+        // Rest of the original method remains the same...
         if (animator != null)
         {
             animator.SetBool(dizzyAnimationBool, true);
         }
 
+        if (dizzyEffectInstance == null && dizzyEffect != null && dizzyEffectSpawnPoint != null)
+        {
+            dizzyEffectInstance = Instantiate(dizzyEffect, dizzyEffectSpawnPoint.position, Quaternion.identity, dizzyEffectSpawnPoint);
+        }
+
         Debug.Log($"Player is dizzy! Hit count: {hitCount}");
 
-        // 🧨 Drop firecracker if player is holding one
         if (playerPickup != null && playerPickup.IsHoldingFirecracker())
         {
             playerPickup.DropFirecracker();
         }
     }
+
 
 
 
@@ -100,36 +128,48 @@ public class KnockbackReceiver : MonoBehaviour
         }
         else if (knockbackTimeRemaining <= 0f && playerController != null && playerController.IsKnockback)
         {
-            knockbackVelocity = Vector3.zero; // Reset velocity when knockback time is over
-            playerController.IsKnockback = false; // Reset knockback state
+            knockbackVelocity = Vector3.zero;
+            playerController.IsKnockback = false;
         }
 
-        // Handle dizzy state timing
+        // Handle dizzy state
         if (isDizzy)
         {
             dizzyTimeRemaining -= Time.deltaTime;
 
-            // End dizzy state when time is up
+            if (dizzyEffectInstance != null)
+            {
+                // Optional: Follow head or wiggle effect logic can be here
+            }
+
             if (dizzyTimeRemaining <= 0f)
             {
                 isDizzy = false;
 
-                // Set dizzy animation bool to false when recovered
                 if (animator != null)
                 {
                     animator.SetBool(dizzyAnimationBool, false);
                 }
 
-                // Re-enable player controls
                 if (playerController != null)
                 {
                     playerController.enabled = true;
                 }
 
+                // 🧹 Destroy dizzy effect
+                if (dizzyEffectInstance != null)
+                {
+                    Destroy(dizzyEffectInstance);
+                    dizzyEffectInstance = null;
+                }
+
                 Debug.Log("Player recovered from dizzy state");
             }
         }
+
+        PlayerMarker.SetActive(!isDizzy); // Show player marker when dizzy
     }
+
 
     // Public getter for hit count
     public int GetHitCount()

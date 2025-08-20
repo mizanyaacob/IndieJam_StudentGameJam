@@ -1,6 +1,9 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using static PlayerScoreData;
+
 
 public class ScoringManager : MonoBehaviour
 {
@@ -11,7 +14,19 @@ public class ScoringManager : MonoBehaviour
     [Header("Player Score UI")]
     [SerializeField] private int maxScore = 100;
     [SerializeField] private Image[] playerScoreImages;
-    [SerializeField] private TMP_Text[] score; 
+    [SerializeField] private TMP_Text[] score;
+
+    [Header("TIMER")]
+    [SerializeField] private float timerDuration = 120f; // Duration in seconds
+    [SerializeField] private TMP_Text timerText; // Reference to the UI Text for the timer
+    private float remainingTime;
+    private bool timerRunning = false;
+
+    private AudioManager audioManager; // Reference to AudioManager script
+    private bool hasPlayedCountdownSFX = false;
+
+
+
 
     private void Awake()
     {
@@ -23,7 +38,53 @@ public class ScoringManager : MonoBehaviour
             if (image != null)
                 image.fillAmount = 0f; // Initialize fill amount to 0
         }   
+
+        audioManager = FindAnyObjectByType<AudioManager>();
     }
+
+    private void Start()
+    {
+       timerText.text = timerDuration.ToString(); // Initialize the timer text
+        // Initialize scores
+        P1Score = 0;
+        P2Score = 0;
+        P3Score = 0;
+        P4Score = 0;
+
+        // Start the timer
+        StartTimer();
+    }
+    private void Update()
+    {
+        if (!timerRunning) return;
+
+        remainingTime -= Time.deltaTime;
+
+        if (timerText != null)
+        {
+            timerText.text = Mathf.Ceil(remainingTime).ToString(); // Update the timer text
+        }
+
+        if (remainingTime <= 10f)
+        {
+            timerText.color = Color.red; // Change color to red when time is low
+        }
+
+        // Play countdown sound once at 5 seconds left
+        if (!hasPlayedCountdownSFX && remainingTime <= 5f)
+        {
+            audioManager.PlaySFX(audioManager.Countdown);
+            hasPlayedCountdownSFX = true;
+        }
+
+        if (remainingTime <= 0f)
+        {
+            timerRunning = false;
+            HandleGameOver();
+        }
+    }
+
+
 
     public void AddScore(int playerIndex, int value)
     {
@@ -68,6 +129,26 @@ public class ScoringManager : MonoBehaviour
         {
             score[playerIndex].text = currentScore.ToString();
         }
+    }
+
+    public void StartTimer()
+    {
+        remainingTime = timerDuration;
+        timerRunning = true;
+    }
+    private void HandleGameOver()
+    {
+        Debug.Log("Time's up! Game Over.");
+        audioManager.PlaySFX(audioManager.GameEnd);
+
+        GameData.PlayerScores.Clear(); // Clear old data if any
+
+        GameData.PlayerScores.Add(new PlayerScoreData("Player 1", P1Score));
+        GameData.PlayerScores.Add(new PlayerScoreData("Player 2", P2Score));
+        GameData.PlayerScores.Add(new PlayerScoreData("Player 3", P3Score));
+        GameData.PlayerScores.Add(new PlayerScoreData("Player 4", P4Score));
+
+        SceneManager.LoadScene("GAMEOVER");
     }
 
 
